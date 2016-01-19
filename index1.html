@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>ENTSO-E Online Grid Map</title>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css' rel='stylesheet' />
+
+    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.3/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.3/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        
+        #map { position:relative; top:0; bottom:0; width:100%;height:100%;}
+        #map_area {width: 100%; height:100%;margin: 0;padding: 0;}
+        .mapboxgl-popup-close-button, .mapboxgl-popup-close-button:hover,.mapboxgl-ctrl-group > button {color:rgb(0, 0, 0);}
+         .mapboxgl-popup-close-button {padding:3px 6px;}
+        .mapboxgl-ctrl-group > button {margin:0;}
+        .mapboxgl-popup-content {padding:15px 25px 15px;}
+        .title {padding-top:1em;padding-bottom: .5em; margin-bottom:.5em; border-bottom: 1px solid #3c3c3c; }
+        #features {}
+         ul li .properties {margin-left:30px;min-height: 100px;}
+         ul li .station {font-size: 12px;
+          padding: 10px 0;
+          margin-right: 30px;
+          white-space: nowrap;
+          overflow: hidden;
+          height: 37px;}
+         ul li {display: block;
+                position: relative;
+                border-bottom: 1px solid #EDECE9;
+                cursor: pointer;
+            }
+        ul li .voltage::after {content:' kV';}
+        ul li .line-props {width: 25%;float: left;font-size: 14px;font-weight: 400;color: #737c81;}
+        ul li .investment {display: block;padding-bottom: 10px;}
+        ul li .invest {display: inline-block;font-size: 14px;font-weight: 400;color: #737c81;padding-right: 10px;}
+
+        .promotor:before{content:' promotor';}
+        .invest_type:before{content:' invest type';}
+        .commissioning:before{content:'commissioning';}
+        .promotor:before,  .invest_type:before, .commissioning:before {
+          display: block;
+          font-size: 9px;
+          color: #222222;
+        }
+
+
+        ul li .line-props:last-child{width:50%;}
+        
+        .routeLine._154{background-color: #47B584;}
+        .routeLine._220,.routeLine._275 {background-color: #47B584;}
+        .routeLine._400,.routeLine._330,.routeLine._380 {background-color: #F70C0C;}
+        .routeLine.DC {background-color: #AC007E;}
+
+        ul li .routeLine {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: absolute;
+            width: 2px;
+            height: 90%;
+            background-color: #D8D8D8;
+            left: 10px;
+            top: 78px;
+            height: 62px;
+            transition: height 0.25s,top 0.25s;
+            transition-delay: 0.05s;
+            transition-timing-function: ease-in-out;
+        }
+        ul li .routeLine div:first-child {
+    margin-top: -3px;
+}
+ul li .routeLine div:last-child {
+    position: absolute;
+    bottom: -3px;
+}
+ul li .routeLine > div {
+    width: 10px;
+    height: 10px;
+    background-color: #D8D8D8;
+    border-radius: 8px;
+    margin-left: -4px;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+    color: transparent;
+    transition: width 0.25s,height 0.25s,margin-left 0.25s,color 0.25s,line-height 0.25s;
+    transition-delay: 0.05s;
+    transition-timing-function: ease-in-out;
+}
+.key-stats >li {border-right: 5px solid #CCC;padding:10px;color:#fff; background: #acc23a;}
+.dot{border-radius:50%;margin-right:5px;display:inline-block !important;}
+.line{margin-right:5px;display:inline-block !important;padding: 3px 10px;border-radius: 0;margin-bottom: 3px;}
+.fill-keynote{background-color:#f04124;}
+.fill-new-station {background-color:#7D9A46;}
+.fill-up-station {background-color:rgba(45,93,196,1);}
+.fill-400kv{background-color:rgba(247,12,12,1);}
+.fill-220kv{background-color:rgba(34,161,34,1);}
+.fill-dc{background-color:#ac007e;}
+.fill-exist{background-color:#d6d6d6;}
+.fill-bubble{background-color:#e1dcd3;border:1px solid #000;padding: 5px 10px;margin-bottom: 0px;}
+#legend > ul li {border-bottom: 0px;padding-right:10px;}
+#legend {border-bottom:2px solid #D8D7D3;margin-top:0px;border-top:1px solid #D8D7D3;padding-top:10px;}
+body {background: #FAF9F7;}
+
+.mapboxgl-popup-content {
+    max-width: 300px;
+}
+    </style>
+</head>
+<body>
+<style>
+    
+</style>
+
+<div style="height:100%;">
+
+  
+  <div class="large-12 columns" style="height:100%;">
+  <div class="row collapse">
+    <div class="large-12 columns">
+    <div class="logo">
+        <h2 style="padding-top: 1em;padding-bottom: .5em;margin-bottom: .5em;border-bottom: 0px;padding-bottom: 0;border-bottom:0px;">
+        <a href="#" style="color:#63b6e5;">ENTSO-E Online Grid Map</a>
+        </h2>
+       
+    </div>
+      <div id="legend">
+       <ul class="inline-list">
+        <li><strong>Lines: </strong></li>
+        <li><span class="line fill-400kv"></span>750kV</li>
+        <li><span class="line fill-400kv"></span>500kV</li>
+        <li><span class="line fill-400kv"></span>380-400kV</li>
+        <li><span class="line fill-220kv"></span>300-320kV</li>
+        <li><span class="line fill-220kv"></span>220kV</li>
+        <li><span class="line fill-220kv"></span>132-150kV</li>
+        <li><span class="line fill-220kv"></span>110kV</li>
+        <li><span class="line fill-dc"></span>DC</li>
+        <li><span class="line fill-exist"></span>Existing Lines</li>
+        <li><span class="line fill-bubble"></span>Projects without alignement</li>
+
+        <li><span class="dot fill-up-station" style="padding:5px;"></span>Station Upgrades</li>
+        <li><span class="dot fill-new-station" style="padding:5px;"></span>New Stations</li>
+       </ul>
+      </div>
+  </div>
+    
+    </div>
+    <div class="row collapse" style="min-height:1000px; height:0px;">
+      <div id="map_area">
+
+        <div id='map'></div>
+
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoicnVzdHkiLCJhIjoib0FjUkJybyJ9.V9QoXck_1Z18MhpwyIE2Og';
+if (!mapboxgl.supported()) {
+    alert('Your browser does not support Mapbox GL');
+} else {
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: './ee_map_v2.json',
+        center: [12.013, 50.254],
+        zoom: 4.0,
+        hash: true
+    });
+
+    map.addControl(new mapboxgl.Navigation({position: 'top-left'}));
+
+    // function to switch between Medium Term & Long Term
+    function changeHorizon() {
+      var layers = ['tyndp-bubbles-ac', 'tyndp-bubbles-ac-380-400','tyndp-bubbles-DC', 'tyndp-dc-lines','tyndp-400kv-new','tyndp-400kv-upgrade', 'tyndp-330kv-new','tyndp-220kv-new', 'tyndp-220kv-upgrade', 'tyndp-stations-new', 'tyndp-stations-upgrade', 'tyndp-lines-labels','tyndp-stations-labels', 'tyndp-bubbles-labels']
+      button = document.getElementById('toggleLayer')
+      //console.log(button.innerHTML)
+      if (button.innerHTML == 'Switch to Long Term - Post 2018'){
+        button.innerHTML = 'Switch to Medium Term - Pre 2018'
+      } else {
+        button.innerHTML = 'Switch to Long Term - Post 2018'
+      }
+      for (var i = layers.length - 1; i >= 0; i--) {
+          layer = layers[i];
+          
+          var filter = map.getFilter(String(layer));
+          
+          if (filter.length > 0) {
+            for (var p = filter.length - 1; p >= 0; p--) {
+              if (filter[p][1]=='current_tyndp_expected_commissioning') {
+                if (filter[p][0]=='<=') {
+                  filter[p][0] = '>'
+                } else {
+                  filter[p][0] = '<='
+                };
+              }
+            }   
+          }
+          map.setFilter(String(layer), filter);
+      }
+    return false
+  };
+
+
+    function get_tyndp_info(feature) {
+      var item = feature.properties;
+      var label = item['label']
+      var voltage = item['voltage_level'];
+      var from = item['from_substation_name'];
+      var to = item['to_substation_name'];
+      var current = item['current_type_name'];
+      var line_type = item['line_structure_type_name'];
+      var inv_type = item['investment_type_name'];
+      var promoter = item['promoter_tso']
+      var finish = item['current_tyndp_expected_commissioning'];
+
+      if (promoter){
+        var promoter = promoter
+        promoter = item['promoter_tso'].toString().split(' ')[0];
+      }
+
+      if(typeof line_type === "undefined" && typeof current === "undefined"){
+        var line_type = 'Substation'
+        var current = ''
+        var to = from
+      };
+
+
+      var html = '<li>' + '<div class="infor" style="font-size: 13px;color:#737c81;">project | investment</div>' +
+            '<h1>'+ label +'</h1>' +
+            '<div class="routeLine _'+ voltage +' '+ current +'">' +
+              '<div>B</div>' +
+              '<div>A</div>' +
+            '</div>' +
+                    '<div class="properties">' +
+                      '<div class="station">'+ from  +'</div>' +
+                      '<div class="details" style="overflow:hidden;">' +
+                         '<div class="voltage line-props">'+ voltage +'</div>' +
+                         '<div class="current_type line-props">'+ current +'</div>' +
+                         '<div class="line_type line-props">'+ line_type +'</div>' +
+                      '</div>' +
+                      '<div class="station">'+ to +'</div>' +
+                      '<div class="investment">' +
+                       ' <div class="invest_type invest">'+ inv_type +' Project</div>' +
+                        '<div class="promotor invest">'+ promoter +'</div>' +
+                        '<div class="commissioning invest">'+ finish +'</div>' +
+                      '</div>' +
+                    '</div>' +
+                  '</li>';
+        //console.log(html);
+        return html;
+
+    };
+
+
+    map.on('click', function(e) {
+          map.featuresAt(e.point, {radius: 3, includeGeometry:false}, function(err, features) {
+              if (err) throw err;
+              
+              clickedFeatures = []
+              //info = ''
+              //info = '<ul id="tyndp-features"></ul>'
+              //var info = document.createElement('ul');
+              //info.id = "tyndp-features";
+
+              //var feat = document.getElementById('features')
+              //feat.innerHTML = ''
+              //feat.appendChild(info);
+
+              for (var i = features.length - 1; i >= 0; i--) {
+                feature = features[i]
+               
+                if (feature['layer']['source'] == "mapbox://rusty.02rit83j" || feature['layer']['source'] == "mapbox://rusty.cm0b8gzp"){
+                    clickedFeatures.push(feature.properties)
+                }
+              };
+              console.log(JSON.stringify(clickedFeatures, null, 2));
+
+              //document.getElementById('features').innerHTML = JSON.stringify(tyndpFeatures, null, 2);
+              console.log("Zoom: " + map.getZoom())
+              popUp = ''
+              /*popUp = '<div style="text-align:center;">project id | invest. id <br>'
+              infoHTML = ''*/
+              //var ul = info.getElementById("tyndp-features");
+              for (var i = clickedFeatures.length - 1; i >= 0; i--) {
+                feature = clickedFeatures[i]
+                //infoHTML += get_tyndp_info(feature);
+                
+                popUp += '<div><strong>'+feature['symbol']+'</strong></div>'
+                if (feature['name_eng']) {
+                  popUp += '<div>'+feature['name_eng']+'</div>'
+                };
+                if (feature['country_1']) {
+                  popUp += '<div>'+feature['country_1']+' &mdash; ' +feature['country_2']+'</div>'
+                };
+                popUp += '<hr />'
+
+                //info += get_tyndp_info(feature);
+                /*
+                info += '<h1>'+feature.properties['label']+'</h1> '
+                for (var k in feature.properties) {
+                      var v = String(feature.properties[k])
+                      var k = k.replace(/_/g, " ")
+                              .toUpperCase();
+                      info += '<strong>'+k+'</strong> ' + v +' <br/>' ;
+                  }
+*/
+            };
+            //popUp = JSON.stringify(clickedFeatures, null, 2);
+            //info.innerHTML = infoHTML;
+            //document.getElementById('features').innerHTML = info
+            if (clickedFeatures.length > 0) {
+              var tooltip = new mapboxgl.Popup({anchor: 'top-left'})
+                .setLngLat(e.lngLat)
+                .setHTML(popUp)
+                .addTo(map);
+            } else {
+              //info.innerHTML = '<p><strong>Select a line, station or bubble for more information.</strong></p>';
+            }
+            
+          });
+          
+      });
+}
+
+
+
+</script>
+
+</body>
+</html>
