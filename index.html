@@ -112,27 +112,28 @@ body {background: #FAF9F7;}
 .mapboxgl-popup-content {
     max-width: 300px;
 }
-.bg_icon {    padding: 5px 10px;
+.bg_icon {    padding: 5px 8px 5px 9px;
     margin-bottom: 0px;
     background-image: url(https://api.mapbox.com/styles/v1/rusty/cijftgxlo0035aim4b01kmevc/sprite.png?access_token=pk.eyJ1IjoicnVzdHkiLCJhIjoib0FjUkJybyJ9.V9QoXck_1Z18MhpwyIE2Og);
     height: 14px;
     width: 10px;
     background-repeat: no-repeat;
     display: inline-block !important;
-    background-size: 70px;} 
-.ps{background-position:1px -49px;}
+    background-size: 70px;margin-right: 4px;} 
+.ps{background-position:0px -49px;}
+.rs{background-position:-17px -33px;padding:5px 8px 5px 8px;}
+.bs {background-position:-50px -0px;}
 .con{background-position: -17px 0;
-    padding: 5px 8px;}
+      padding: 5px 8px 5px 8px;
+    }
 .gas{background-position: -33px -17px;
-    padding: 5px 8px 5px 9px;margin-right: 4px;}
-.wind{background-position: -49px -49px;
-    padding: 6px 11px;}
+    margin-right: 4px;}
+.wind{background-position: -50px -49px;
+    }
 .nc{background-position: -33px -34px;
-    padding: 5px 8px 5px 9px;
-    margin-right: 4px;}
+    }
 .solar{background-position: -33px -50px;
-    padding: 5px 8px 5px 9px;
-    margin-right: 4px;}
+    }
 .coal{background-position: -50px -34px;
     padding: 5px 8px 5px 9px;
     margin-right: 4px;}
@@ -182,6 +183,8 @@ body {background: #FAF9F7;}
         <li></li>
         <li><span class="dot fill-up-station" style="padding:5px;"></span>Substation</li>
         <li><span class="bg_icon ps"></span>Pump Storage</li>
+        <li><span class="bg_icon rs"></span>Run of River + Storage</li>
+        <li><span class="bg_icon bs"></span>Biomass</li>
         <li><span class="bg_icon con"></span>DC Converter</li>
         <li><span class="bg_icon gas"></span>Gas</li>
         <li><span class="bg_icon wind"></span>Wind</li>
