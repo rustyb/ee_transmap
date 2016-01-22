@@ -218,87 +218,6 @@ if (!mapboxgl.supported()) {
 
     map.addControl(new mapboxgl.Navigation({position: 'top-left'}));
 
-    // function to switch between Medium Term & Long Term
-    function changeHorizon() {
-      var layers = ['tyndp-bubbles-ac', 'tyndp-bubbles-ac-380-400','tyndp-bubbles-DC', 'tyndp-dc-lines','tyndp-400kv-new','tyndp-400kv-upgrade', 'tyndp-330kv-new','tyndp-220kv-new', 'tyndp-220kv-upgrade', 'tyndp-stations-new', 'tyndp-stations-upgrade', 'tyndp-lines-labels','tyndp-stations-labels', 'tyndp-bubbles-labels']
-      button = document.getElementById('toggleLayer')
-      //console.log(button.innerHTML)
-      if (button.innerHTML == 'Switch to Long Term - Post 2018'){
-        button.innerHTML = 'Switch to Medium Term - Pre 2018'
-      } else {
-        button.innerHTML = 'Switch to Long Term - Post 2018'
-      }
-      for (var i = layers.length - 1; i >= 0; i--) {
-          layer = layers[i];
-          
-          var filter = map.getFilter(String(layer));
-          
-          if (filter.length > 0) {
-            for (var p = filter.length - 1; p >= 0; p--) {
-              if (filter[p][1]=='current_tyndp_expected_commissioning') {
-                if (filter[p][0]=='<=') {
-                  filter[p][0] = '>'
-                } else {
-                  filter[p][0] = '<='
-                };
-              }
-            }   
-          }
-          map.setFilter(String(layer), filter);
-      }
-    return false
-  };
-
-
-    function get_tyndp_info(feature) {
-      var item = feature.properties;
-      var label = item['label']
-      var voltage = item['voltage_level'];
-      var from = item['from_substation_name'];
-      var to = item['to_substation_name'];
-      var current = item['current_type_name'];
-      var line_type = item['line_structure_type_name'];
-      var inv_type = item['investment_type_name'];
-      var promoter = item['promoter_tso']
-      var finish = item['current_tyndp_expected_commissioning'];
-
-      if (promoter){
-        var promoter = promoter
-        promoter = item['promoter_tso'].toString().split(' ')[0];
-      }
-
-      if(typeof line_type === "undefined" && typeof current === "undefined"){
-        var line_type = 'Substation'
-        var current = ''
-        var to = from
-      };
-
-
-      var html = '<li>' + '<div class="infor" style="font-size: 13px;color:#737c81;">project | investment</div>' +
-            '<h1>'+ label +'</h1>' +
-            '<div class="routeLine _'+ voltage +' '+ current +'">' +
-              '<div>B</div>' +
-              '<div>A</div>' +
-            '</div>' +
-                    '<div class="properties">' +
-                      '<div class="station">'+ from  +'</div>' +
-                      '<div class="details" style="overflow:hidden;">' +
-                         '<div class="voltage line-props">'+ voltage +'</div>' +
-                         '<div class="current_type line-props">'+ current +'</div>' +
-                         '<div class="line_type line-props">'+ line_type +'</div>' +
-                      '</div>' +
-                      '<div class="station">'+ to +'</div>' +
-                      '<div class="investment">' +
-                       ' <div class="invest_type invest">'+ inv_type +' Project</div>' +
-                        '<div class="promotor invest">'+ promoter +'</div>' +
-                        '<div class="commissioning invest">'+ finish +'</div>' +
-                      '</div>' +
-                    '</div>' +
-                  '</li>';
-        //console.log(html);
-        return html;
-
-    };
 
 
     map.on('click', function(e) {
@@ -306,14 +225,6 @@ if (!mapboxgl.supported()) {
               if (err) throw err;
               
               clickedFeatures = []
-              //info = ''
-              //info = '<ul id="tyndp-features"></ul>'
-              //var info = document.createElement('ul');
-              //info.id = "tyndp-features";
-
-              //var feat = document.getElementById('features')
-              //feat.innerHTML = ''
-              //feat.appendChild(info);
 
               for (var i = features.length - 1; i >= 0; i--) {
                 feature = features[i]
@@ -324,15 +235,11 @@ if (!mapboxgl.supported()) {
               };
               console.log(JSON.stringify(clickedFeatures, null, 2));
 
-              //document.getElementById('features').innerHTML = JSON.stringify(tyndpFeatures, null, 2);
               console.log("Zoom: " + map.getZoom())
               popUp = ''
-              /*popUp = '<div style="text-align:center;">project id | invest. id <br>'
-              infoHTML = ''*/
-              //var ul = info.getElementById("tyndp-features");
+              
               for (var i = clickedFeatures.length - 1; i >= 0; i--) {
                 feature = clickedFeatures[i]
-                //infoHTML += get_tyndp_info(feature);
                 
                 popUp += '<div><strong>'+feature['symbol']+'</strong></div>'
                 if (feature['name_eng']) {
@@ -343,20 +250,8 @@ if (!mapboxgl.supported()) {
                 };
                 popUp += '<hr />'
 
-                //info += get_tyndp_info(feature);
-                /*
-                info += '<h1>'+feature.properties['label']+'</h1> '
-                for (var k in feature.properties) {
-                      var v = String(feature.properties[k])
-                      var k = k.replace(/_/g, " ")
-                              .toUpperCase();
-                      info += '<strong>'+k+'</strong> ' + v +' <br/>' ;
-                  }
-*/
             };
-            //popUp = JSON.stringify(clickedFeatures, null, 2);
-            //info.innerHTML = infoHTML;
-            //document.getElementById('features').innerHTML = info
+
             if (clickedFeatures.length > 0) {
               var tooltip = new mapboxgl.Popup({anchor: 'top-left'})
                 .setLngLat(e.lngLat)
