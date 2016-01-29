@@ -4990,7 +4990,7 @@
                     ]
                 ]
             },
-            "line-color": "rgba(34,26,196,1)"
+            "line-color": "rgba(237,17,17,1)"
         },
         "source-layer": "original"
     }, {
@@ -5080,7 +5080,7 @@
                 0,
                 0
             ],
-            "line-color": "rgba(34,26,196,1)"
+            "line-color": "rgba(237,17,17,1)"
         },
         "source-layer": "original"
     }, {
@@ -5112,7 +5112,7 @@
         "source": "mapbox://rusty.cm0b8gzp",
         "id": "380-400kV",
         "paint": {
-            "line-color": "rgba(34,26,196,1)",
+            "line-color": "rgba(237,17,17,1)",
             "line-width": {
                 "base": 1.25,
                 "stops": [
