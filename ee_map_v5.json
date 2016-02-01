@@ -2937,7 +2937,7 @@
         },
         "source-layer": "marine_label"
     }, {
-        "interactive": true,
+        "interactive": false,
         "layout": {
             "visibility": "visible",
             "line-cap": "butt",
@@ -3103,7 +3103,7 @@
         },
         "source-layer": "original"
     }, {
-        "interactive": true,
+        "interactive": false,
         "layout": {
             "visibility": "visible",
             "line-cap": "butt",
@@ -3194,7 +3194,7 @@
         },
         "source-layer": "original"
     }, {
-        "interactive": true,
+        "interactive": false,
         "id": "132kv Multi copy",
         "paint": {
             "line-opacity": {
@@ -3325,7 +3325,7 @@
         },
         "source-layer": "original"
     }, {
-        "interactive": true,
+        "interactive": false,
         "layout": {
             "visibility": "visible",
             "line-cap": "butt",
@@ -3464,7 +3464,7 @@
         },
         "source-layer": "original"
     }, {
-        "interactive": true,
+        "interactive": false,
         "layout": {
             "visibility": "visible",
             "line-cap": "butt",
@@ -3606,7 +3606,7 @@
         },
         "source-layer": "original"
     }, {
-        "interactive": true,
+        "interactive": false,
         "layout": {
             "visibility": "visible",
             "line-cap": "butt",
@@ -3752,7 +3752,7 @@
         },
         "source-layer": "original"
     }, {
-        "interactive": true,
+        "interactive": false,
         "layout": {
             "visibility": "visible",
             "line-cap": "butt",
@@ -3941,7 +3941,7 @@
         },
         "source-layer": "original"
     }, {
-        "interactive": true,
+        "interactive": false,
         "layout": {
             "visibility": "visible"
         },
@@ -6368,7 +6368,6 @@
         "filter": [
             "in",
             "symbol",
-            "Wind Farm",
             "Wind Farm Under Construction"
         ],
         "type": "symbol",
