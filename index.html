@@ -96,9 +96,9 @@ ul li .routeLine > div {
 .fill-keynote{background-color:#f04124;}
 .fill-new-station {background-color:#7D9A46;}
 .fill-up-station {background-color:rgba(1,1,1,1);}
-.fill-750kv{background-color:rgba(17,219,237,1);}
-.fill-500kv{background-color:rgba(237,17,17,1);}
-.fill-400kv{background-color:rgba(34,26,196,1);}
+.fill-750kv{background-color:rgba(32,72,128,1);}
+.fill-500kv{background-color:rgba(168,0,0,1);}
+.fill-400kv{background-color:rgba(237,17,17,1);}
 .fill-300kv{background-color:rgba(224,140,22,1);}
 .fill-220kv{background-color:rgba(10,105,10,1);}
 .fill-110kv{background-color:rgba(0,0,0,1);}
@@ -119,24 +119,21 @@ body {background: #FAF9F7;}
     width: 10px;
     background-repeat: no-repeat;
     display: inline-block !important;
-    background-size: 70px;margin-right: 4px;} 
-.ps{background-position:0px -49px;}
-.rs{background-position:-17px -33px;padding:5px 8px 5px 8px;}
-.bs {background-position:-50px -0px;}
-.con{background-position: -17px 0;
-      padding: 5px 8px 5px 8px;
-    }
-.gas{background-position: -33px -17px;
-    margin-right: 4px;}
-.wind{background-position: -50px -49px;
-    }
-.nc{background-position: -33px -34px;
-    }
-.solar{background-position: -33px -50px;
-    }
-.coal{background-position: -50px -34px;
-    padding: 5px 8px 5px 9px;
-    margin-right: 4px;}
+    background-size: cover;margin-right: 4px;} 
+.line-cons{background-image: url(../img/stations/line-const.svg);}
+.sub{background-image: url(../img/stations/Substation_UO.svg);}
+.ps{background-image: url(../img/stations/Hydro_Pump_storage_UO.svg);}
+.rs{background-image: url(../img/stations/Hydro_Run-of_river_UO.svg);}
+.bs {background-image: url(../img/stations/Biomass_UO.svg);}
+.con{background-image: url(../img/stations/Converter_station_UO.svg);}
+.gas{background-image: url(../img/stations/Fossil_fuel_Gas_UO.svg);}
+.wind{background-image: url(../img/stations/Wind_UO.svg);}
+.nc{background-image: url(../img/stations/Nuclear_UO.svg);}
+.solar{background-image: url(../img/stations/Solar_UO.svg);}
+.coal{background-image: url(../img/stations/Fossil_fuel_Hard_coal_UO.svg);}
+.other{background-image: url(../img/stations/other_UO.svg);}
+.cons_hor{background-image: url(../img/stations/cons_hor.svg);}
+.cons_dia{background-image: url(../img/stations/cons_dia.svg);}
 
     .legend1 {
       position: absolute;
@@ -176,7 +173,7 @@ body {background: #FAF9F7;}
        
     </div>
       <div id="legend" class="legends">
-      <strong>Lines: </strong>
+      <strong>Lines </strong>
        <ul class="inline-list">
         <li></li>
         <li><span class="line fill-750kv"></span>750kV</li>
@@ -187,22 +184,22 @@ body {background: #FAF9F7;}
         <li><span class="line fill-110kv"></span>132-150kV</li>
         <li><span class="line fill-110kv"></span>110kV</li>
         <li><span class="line fill-dc"></span>DC</li>
-        <li><span class="line fill-exist"></span>Dash = Multiple Circuts</li>
+        <li><span class="bg_icon line-cons" style=""></span>2 or more circuts</li>
         </ul>
-        <strong>Stations: </strong>
+        <strong>Stations &amp; Powerplants</strong>
         <ul class="inline-list">
-
-        <li></li>
-        <li><span class="dot fill-up-station" style="padding:5px;"></span>Substation</li>
-        <li><span class="bg_icon ps"></span>Pump Storage</li>
-        <li><span class="bg_icon rs"></span>Run of River + Storage</li>
-        <li><span class="bg_icon bs"></span>Biomass</li>
+        <li><span class="bg_icon sub" style=""></span>Substation</li>
         <li><span class="bg_icon con"></span>DC Converter</li>
+        <li><span class="bg_icon ps"></span>Pump Storage</li>
+        <li><span class="bg_icon rs"></span>River + Storage</li>
+        <li><span class="bg_icon bs"></span>Biomass</li>
         <li><span class="bg_icon gas"></span>Gas</li>
-        <li><span class="bg_icon wind"></span>Wind</li>
         <li><span class="bg_icon nc"></span>Nuclear</li>
         <li><span class="bg_icon coal"></span>Coal</li>
+        <li><span class="bg_icon wind"></span>Wind</li>
         <li><span class="bg_icon solar"></span>Solar</li>
+        <li><span class="bg_icon other"></span>Other</li>
+        <li style="display: block;width: 100%;"><span class="bg_icon cons_hor"></span><span class="bg_icon cons_dia"></span>Under Construction</li>
        </ul>
       </div>
   </div>
@@ -214,7 +211,9 @@ body {background: #FAF9F7;}
         <div id='map'></div>
         <div id='menu'>
           <label>Switch Between Styles</label>
-          <input id='v3' type='radio' name='rtoggle' value='v3' checked='checked'>
+          <input id='v5' type='radio' name='rtoggle' value='v4' checked='checked'>
+          <label for='v5'>version 4</label> <br>
+          <input id='v3' type='radio' name='rtoggle' value='v3'>
           <label for='v3'>version 3</label> <br>
           <input id='v2' type='radio' name='rtoggle' value='v2' >
           <label for='v2'>version 2</label>
@@ -231,7 +230,7 @@ if (!mapboxgl.supported()) {
 } else {
     var map = new mapboxgl.Map({
         container: 'map',
-        style: './ee_map_v3.json',
+        style: './ee_map_v5.json',
         center: [12.013, 50.254],
         zoom: 4.0,
         hash: true

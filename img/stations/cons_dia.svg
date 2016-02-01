@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg2" inkscape:version="0.91 r13725" sodipodi:docname="Hydro_Everything_UC.svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
+	 style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FFFFFF;stroke-width:3.829;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-width:4.073;stroke-miterlimit:2.8;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:#A02C2C;stroke:#000000;stroke-width:9.592;stroke-linecap:round;}
+	.st4{fill:none;stroke:#000000;stroke-width:4.073;stroke-miterlimit:2.8;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer3" inkscape:cx="20.433996" inkscape:cy="50" inkscape:document-units="px" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:snap-grids="true" inkscape:snap-page="true" inkscape:window-height="1395" inkscape:window-maximized="1" inkscape:window-width="2556" inkscape:window-x="1920" inkscape:window-y="56" inkscape:zoom="5.53" pagecolor="#ffffff" showgrid="true" units="px">
+	<inkscape:grid  id="grid4138" type="xygrid"></inkscape:grid>
+</sodipodi:namedview>
+<g id="layer4" inkscape:groupmode="layer" inkscape:label="Layer 0">
+	<path id="path4507" inkscape:connector-curvature="0" class="st0" d="M2.6,48.8h89.4"/>
+	<path id="rect3343" class="st1" d="M12.5,19.8h75.2c5.6,0,10.1,4.5,10.1,10.1v40.3c0,5.6-4.5,10.1-10.1,10.1H12.5
+		c-5.6,0-10.1-4.5-10.1-10.1V29.9C2.4,24.3,6.9,19.8,12.5,19.8z"/>
+</g>
+<g id="layer3" inkscape:groupmode="layer" inkscape:label="Layer 2">
+	<path id="path4156" inkscape:connector-curvature="0" sodipodi:nodetypes="ccccccc" class="st2" d="M93.7,21.8L3.4,77.2l6.2,3.4
+		h81.2l6.5-8.1V24.9L93.7,21.8z"/>
+	<path id="path4161" inkscape:connector-curvature="0" class="st3" d="M7.8,75.7l84-51.8"/>
+</g>
+<g id="layer2" inkscape:groupmode="layer" inkscape:label="Black frame">
+	<path id="rect4153" class="st4" d="M12.5,19.8h75.2c5.6,0,10.1,4.5,10.1,10.1v40.3c0,5.6-4.5,10.1-10.1,10.1H12.5
+		c-5.6,0-10.1-4.5-10.1-10.1V29.9C2.4,24.3,6.9,19.8,12.5,19.8z"/>
+</g>
+</svg>
