@@ -1,0 +1,7 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14">
+	<rect x="0.5" y="0.5" width="19" height="13" rx="2.5" ry="2.5" fill="#FFF" stroke="#000" stroke-miterlimit="10"/>
+	<title>VER-Left</title>
+	<path id="hor-left" d="M3,1A2,2,0,0,0,1,3v8a2,2,0,0,0,2,2h7V1H3Z" transform="translate(0)" fill="rgb(0,141,255)"/>
+	<line x1="10" y1="1" x2="10" y2="13" fill="none" stroke="#000" stroke-miterlimit="10"/>
+	<rect x="0.5" y="0.5" width="19" height="13" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-miterlimit="10"/>
+</svg>

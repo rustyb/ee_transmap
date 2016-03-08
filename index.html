@@ -116,7 +116,7 @@ body {background: #FAF9F7;}
     margin-bottom: 0px;
     background-image: url(https://api.mapbox.com/styles/v1/rusty/cijftgxlo0035aim4b01kmevc/sprite.png?access_token=pk.eyJ1IjoicnVzdHkiLCJhIjoib0FjUkJybyJ9.V9QoXck_1Z18MhpwyIE2Og);
     height: 14px;
-    width: 10px;
+    width: 20px;
     background-repeat: no-repeat;
     display: inline-block !important;
     background-size: cover;margin-right: 4px;} 
@@ -136,6 +136,43 @@ body {background: #FAF9F7;}
 .other{background-image: url(./img/stations/other_UO.svg);}
 .cons_hor{background-image: url(./img/stations/cons_hor.svg);}
 .cons_dia{background-image: url(./img/stations/cons_dia.svg);}
+
+.hydro_pure_ps{background-image: url(./img/new/hydro_pure_ps.svg);}
+.hydro_pure_storage{background-image: url(./img/new/hydro_pure_storage.svg);}
+.hydro_ror{background-image: url(./img/new/hydro_ror.svg);}
+.hydro_mixed{background-image: url(./img/new/hydro_mixed.svg);}
+.hydro_marine{background-image: url(./img/new/hydro_marine.svg);}
+.fossil_brown_lignite{background-image: url(./img/new/fossil_brown_lignite.svg);}
+.fossil_coal_gas{background-image: url(./img/new/fossil_coal_gas.svg);}
+.fossil_gas{background-image: url(./img/new/fossil_gas.svg);}
+.fossil_coal_hard{background-image: url(./img/new/fossil_coal_hard.svg);}
+.fossil_oil{background-image: url(./img/new/fossil_oil.svg);}
+.fossil_oil_shale{background-image: url(./img/new/fossil_oil_shale.svg);}
+.fossil_peat{background-image: url(./img/new/fossil_peat.svg);}
+.fossil_mixed{background-image: url(./img/new/fossil_mixed.svg);}
+.fossil_other{background-image: url(./img/new/fossil_other.svg);}
+.nuclear{background-image: url(./img/new/nuclear.svg);}
+.waste_nr{background-image: url(./img/new/waste_nr.svg);}
+.waste_renewable{background-image: url(./img/new/waste_renewable.svg);}
+.waste_mixed{background-image: url(./img/new/waste_mixed.svg);}
+.solar_pv{background-image: url(./img/new/solar_pv.svg);}
+.solar_thermal{background-image: url(./img/new/solar_thermal.svg);}
+.biomass{background-image: url(./img/new/biomass.svg);}
+.biogas{background-image: url(./img/new/biogas.svg);}
+.wind{background-image: url(./img/new/wind.svg);}
+.other_nrenew{background-image: url(./img/new/other_nrenew.svg);}
+.other_renew{background-image: url(./img/new/other_renew.svg);}
+.other_nl{background-image: url(./img/new/other_nl.svg);}
+.substation{background-image: url(./img/new/substation.svg);}
+.converter{background-image: url(./img/new/converter.svg);}
+.converter_b2b{background-image: url(./img/new/converter_b2b.svg);}
+.power_plus_sub{background-image: url(./img/new/power_plus_sub.svg);}
+
+.tlbr_cons{background-image: url(./img/new/_TL-BR_cons.svg);}
+.ver_cons{background-image: url(./img/new/_VER_cons.svg);}
+.hor_cons{background-image: url(./img/new/_HOR_cons.svg);}
+.bltr_cons{background-image: url(./img/new/_BL-TR_cons.svg);}
+
 
     .legend1 {
       position: absolute;
@@ -160,6 +197,94 @@ body {background: #FAF9F7;}
     }
     input#v2, input#v3 {margin-top: 5px;
         margin-bottom: 0;}
+
+
+
+
+input[type=range] {
+    display: inline-block!important;
+    vertical-align: middle;
+    height: 12px;
+    padding: 0 2px;
+    border: 2px solid transparent;
+    background: rgba(0,0,0,0.25);
+    min-width: 100px;
+    overflow: hidden;
+    cursor: pointer;
+}
+input[type=range], input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.sidebar-container .keyline-top {
+    border-color: rgba(0,0,0,0.4);
+}
+.z10 {
+    z-index: 10;
+}
+.keyline-top {
+    border-top: 1px solid rgba(0,0,0,0.10);
+}
+.pad2 {
+    padding: 20px;
+}
+small, .prose.small, .small {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+.dark {
+    color: #fff;
+}
+.dark h3 {color: #ffffff;}
+.block {
+    display: block;
+}
+.strong, strong {
+    font-family: 'Open Sans Bold', sans-serif;
+    font-weight: normal;
+}
+.dark .quiet {
+    color: #7f7f7f;
+    color: rgba(255,255,255,.9);
+}
+.quiet {
+    color: #7f7f7f;
+    color: rgba(0,0,0,.9);
+}
+.fill-darkgrey {
+    background-color: #505050;
+}
+
+.pin-topright {
+    top: 0;
+    right: 0;
+}
+.pin-top, .pin-right, .pin-bottom, .pin-left, .pin-topleft, .pin-topright, .pin-bottomleft, .pin-bottomright {
+    position: absolute;
+}
+.beta-container {
+    width: 300px;
+}
+.phase-tag {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 8px 0 0;
+    padding: 2px 5px 0;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.1428571429;
+    font-weight: 700;
+    text-transform: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #d53880;
+}
     </style>
 </head>
 <body>
@@ -172,7 +297,6 @@ body {background: #FAF9F7;}
         <h2 style="padding-top: 1em;padding-bottom: .5em;margin-bottom: .5em;border-bottom: 0px;padding-bottom: 0;border-bottom:0px;">
         <a href="#" style="color:#63b6e5;">ENTSO-E Transmission System</a>
         </h2>
-       
     </div>
       <div id="legend" class="legends">
       <strong>Lines </strong>
@@ -190,7 +314,7 @@ body {background: #FAF9F7;}
         <li><span class="bg_icon line-cons" style=""></span>Line Under Construction</li>
         </ul>
         <strong>Stations &amp; Powerplants</strong>
-        <ul class="inline-list">
+        <!--<ul class="inline-list">
         <li><span class="bg_icon sub" style=""></span>Substation</li>
         <li><span class="bg_icon con"></span>DC Converter</li>
         <li><span class="bg_icon ps"></span>Pump Storage</li>
@@ -202,9 +326,44 @@ body {background: #FAF9F7;}
         <li><span class="bg_icon wind"></span>Wind</li>
         <li><span class="bg_icon solar"></span>Solar</li>
         <li><span class="bg_icon other"></span>Other</li>
-        <li style="display: block;width: 100%;"><span class="bg_icon cons_hor"></span><span class="bg_icon cons_dia"></span>Under Construction</li>
-       </ul>
+        <li style="display: block;width: 100%;"><span class="bg_icon cons_hor"></span><span class="bg_icon cons_dia"></span>Under Construction</li>-->
+        <ul class="inline-list">
+        <li><span class="bg_icon hydro_pure_ps" style=""></span>Hydro Pure pumped Storage</li>
+        <li><span class="bg_icon hydro_pure_storage" style=""></span>Hydro Pure Storage</li>
+        <li><span class="bg_icon hydro_ror" style=""></span>Hydro Run-of-river and pondage</li>
+        <li><span class="bg_icon hydro_mixed" style=""></span>Hydro Mixed pumped storage</li>
+        <li><span class="bg_icon hydro_marine" style=""></span>Hydro Marine (tidal/wave)</li>
+        <li><span class="bg_icon fossil_brown_lignite" style=""></span>Fossil Brown coal/Lignite</li>
+        <li><span class="bg_icon fossil_coal_gas" style=""></span>Fossil Coal-derived gas</li>
+        <li><span class="bg_icon fossil_gas" style=""></span>Fossil Gas</li>
+        <li><span class="bg_icon fossil_coal_hard" style=""></span>Fossil Hard coal</li>
+        <li><span class="bg_icon fossil_oil" style=""></span>Fossil Oil</li>
+        <li><span class="bg_icon fossil_oil_shale" style=""></span>Fossil Oil shale</li>
+        <li><span class="bg_icon fossil_peat" style=""></span>Fossil Peat</li>
+        <li><span class="bg_icon fossil_mixed" style=""></span>Fossil Mixed fuels</li>
+        <li><span class="bg_icon fossil_other" style=""></span>Fossil Other</li>
+        <li><span class="bg_icon nuclear" style=""></span>Nuclear</li>
+        <li><span class="bg_icon waste_nr" style=""></span>Waste (non renewable)</li>
+        <li><span class="bg_icon waste_renewable" style=""></span>Waste (renewable)</li>
+        <li><span class="bg_icon waste_mixed" style=""></span>Waste (mixed)</li>
+        <li><span class="bg_icon solar_pv" style=""></span>Solar PV</li>
+        <li><span class="bg_icon solar_thermal" style=""></span>Solar thermal</li>
+        <li><span class="bg_icon biomass" style=""></span>Biomass</li>
+        <li><span class="bg_icon biogas" style=""></span>Biogas</li>
+        <li><span class="bg_icon wind" style=""></span>Wind</li>
+        <li><span class="bg_icon other_nrenew" style=""></span>Other (non renewable)</li>
+        <li><span class="bg_icon other_renew" style=""></span>Other (renewable)</li>
+        <li><span class="bg_icon other_nl" style=""></span>Other (not listed)</li>
+        <li><span class="bg_icon substation" style=""></span>Substation</li>
+        <li><span class="bg_icon converter" style=""></span>Converter station</li>
+        <li><span class="bg_icon converter_b2b" style=""></span>Converter station back-to-back</li>
+        <li><span class="bg_icon power_plus_sub" style=""></span>Power plants and substations</li>
+        <li style="display: block;width: 100%;"><span class="bg_icon tlbr_cons"></span><span class="bg_icon ver_cons"></span><span class="bg_icon hor_cons"></span><span class="bg_icon bltr_cons"></span>Under Construction</li>
+        </ul>
       </div>
+
+
+      
       <div class="copyright">
         <p>&copy; ENTSO-E. Map data is accurate as of February 2015.</p>
       </div>
@@ -216,14 +375,29 @@ body {background: #FAF9F7;}
 
         <div id='map'></div>
         <div id='menu'>
-          <label>Switch Between Styles</label>
+          <!--<label>Switch Between Styles</label>
+          <input id='v6' type='radio' name='rtoggle' value='v6' checked='checked'>
+          <label for='v6'>version 6</label> <br>
           <input id='v5' type='radio' name='rtoggle' value='v4' checked='checked'>
           <label for='v5'>version 4</label> <br>
           <input id='v3' type='radio' name='rtoggle' value='v3'>
           <label for='v3'>version 3</label> <br>
           <input id='v2' type='radio' name='rtoggle' value='v2' >
-          <label for='v2'>version 2</label>
+          <label for='v2'>version 2</label>-->
         </div>
+        <div class="pin-topright pad2 beta-container dark">
+            <div class="fill-darkgrey keyline-top small dark z10 pad2">
+              <span class="phase-tag">experimental</span>
+              <h3 class="block space-bottom1">Filter Generators</h3>
+              <p>Use the control below to filter generators by MW generation capacity</p>
+              <fieldset id='radius' class='dark'>
+                <span class='small strong block'><span class='quiet'>Generation Capacity:</span> <span id='mw-value' class='highlight'></span></span>
+                <input class='col12' type='range' value='0' min='1' max='5000' step='1'>
+              </fieldset>
+            </div>
+        </div>
+        
+
       </div>
     </div>
     
@@ -236,7 +410,7 @@ if (!mapboxgl.supported()) {
 } else {
     var map = new mapboxgl.Map({
         container: 'map',
-        style: './ee_map_v5.json',
+        style: './ee_map_v6.json',
         center: [12.013, 50.254],
         zoom: 4.0,
         hash: true
@@ -266,14 +440,23 @@ if (!mapboxgl.supported()) {
               
               for (var i = clickedFeatures.length - 1; i >= 0; i--) {
                 feature = clickedFeatures[i]
+
+                mw = feature['mw']
+                if (mw > 0) {
+                  popUp += '<div><strong>'+feature['symbol']+' ('+ mw.toLocaleString() +' MW)</strong></div>'
+                } else {
+                  popUp += '<div><strong>'+feature['symbol']+'</strong></div>'
+                };
                 
-                popUp += '<div><strong>'+feature['symbol']+'</strong></div>'
+                
                 if (feature['name_eng']) {
                   popUp += '<div>'+feature['name_eng']+'</div>'
                 };
                 if (feature['country_1']) {
                   popUp += '<div>'+feature['country_1']+' &mdash; ' +feature['country_2']+'</div>'
                 };
+
+
                 popUp += '<hr />'
 
             };
@@ -304,6 +487,37 @@ var layerList = document.getElementById('menu');
         inputs[i].onclick = switchLayer;
     }
 
+
+
+var $radius = document.getElementById('radius');
+var $mwValue = document.getElementById('mw-value');
+
+var params = {
+  radius: 100
+}
+
+var r = parseInt(params.radius, 10);
+
+function updateRadiusLabel(r) {
+  $mwValue.textContent = '>= ' + r.toLocaleString() + ' MW';
+}
+
+function redraw(e) {
+   map.setFilter('ee_points', ['>=', 'mw', parseInt(params.radius, 10)])
+   map.setLayoutProperty('ee_points', 'icon-size', 1.2)
+};
+
+
+// Radius changer
+$radius.querySelector('input').addEventListener('input', function(e) {
+  //setHash({radius: e.target.value });
+  params.radius = e.target.value;
+  //console.log(e.target.value.toFixed(0) );
+  updateRadiusLabel(parseInt(params.radius, 10));
+  //circle.setRadius(params.radius);
+});
+
+$radius.querySelector('input').addEventListener('change', redraw);
 
 }
 

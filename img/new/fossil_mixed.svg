@@ -1,0 +1,7 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14">
+	<rect x="0.5" y="0.5" width="19" height="13" rx="2.5" ry="2.5" fill="#FFF" stroke="#000" stroke-miterlimit="10"/>
+	<title>HOR-Top</title>
+	<path d="M17,1H3A2,2,0,0,0,1,3V7H19V3A2,2,0,0,0,17,1Z" transform="translate(0)" fill="rgb(73,73,73)"/>
+	<line x1="19" y1="7" x2="1" y2="7" fill="none" stroke="#000" stroke-miterlimit="10"/>
+	<rect x="0.5" y="0.5" width="19" height="13" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-miterlimit="10"/>
+</svg>

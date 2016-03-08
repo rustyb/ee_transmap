@@ -1,0 +1,7 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14">
+	<rect x="0.5" y="0.5" width="19" height="13" rx="2.5" ry="2.5" fill="#FFF" stroke="#000" stroke-miterlimit="10"/>
+	<title>TL_BR-Down</title>
+	<path d="M19,3a2,2,0,0,0-2-2H3a2,2,0,0,0-1.5.69L18.65,12.11A2,2,0,0,0,19,11V3Z" transform="translate(0)" fill="rgb(162,51,255)"/>
+	<line x1="18.8" y1="12.2" x2="1.2" y2="1.5" fill="none" stroke="#000" stroke-miterlimit="10"/>
+	<rect x="0.5" y="0.5" width="19" height="13" rx="2.5" ry="2.5" fill="none" stroke="#000" stroke-miterlimit="10"/>
+</svg>
