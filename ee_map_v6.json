@@ -3025,7 +3025,7 @@
             ],
             "line-color": "rgba(139,14,207,1)"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "layout": {
@@ -3069,7 +3069,7 @@
                 ]
             }
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "layout": {
@@ -3101,7 +3101,7 @@
                 ]
             }
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": false,
         "layout": {
@@ -3192,7 +3192,7 @@
             ],
             "line-color": "rgba(0,0,0,1)"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": false,
         "id": "132kv Multi copy",
@@ -3323,7 +3323,7 @@
                 ]
             }
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": false,
         "layout": {
@@ -3415,7 +3415,7 @@
             ],
             "line-color": "rgba(10,105,10,1)"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "layout": {
@@ -3462,7 +3462,7 @@
                 ]
             }
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": false,
         "layout": {
@@ -3553,7 +3553,7 @@
             ],
             "line-color": "rgba(224,140,22,1)"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "layout": {
@@ -3604,7 +3604,7 @@
                 ]
             }
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": false,
         "layout": {
@@ -3697,7 +3697,7 @@
             ],
             "line-color": "rgba(237,17,17,1)"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "layout": {
@@ -3750,7 +3750,7 @@
             },
             "line-color": "rgba(237,17,17,1)"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": false,
         "layout": {
@@ -3840,7 +3840,7 @@
             ],
             "line-color": "rgba(168,0,0,1)"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "layout": {
@@ -3891,7 +3891,7 @@
                 ]
             }
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "layout": {
@@ -3939,7 +3939,7 @@
                 ]
             }
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": false,
         "layout": {
@@ -4022,7 +4022,7 @@
             },
             "line-color": "#fff"
         },
-        "source-layer": "original"
+        "source-layer": "ee_lines_w"
     }, {
         "interactive": true,
         "minzoom": 12,
