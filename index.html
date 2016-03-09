@@ -499,7 +499,7 @@ var params = {
 var r = parseInt(params.radius, 10);
 
 function updateRadiusLabel(r) {
-  $mwValue.textContent = '>= ' + r.toLocaleString() + ' MW';
+  $mwValue.innerText = '>= ' + r.toLocaleString() + ' MW';
 }
 
 function redraw(e) {
