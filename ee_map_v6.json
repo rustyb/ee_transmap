@@ -3331,6 +3331,7 @@
             "in",
             "symbol",
             "132-150 kV Transmission Line Under Construction, 1 Circuit",
+            "132-150 kV Transmission Line Under Construction, 1 Circuit, underground",
             "132-150 kV Transmission Line, 1 Circuit",
             "132-150 kV Transmission Line, 2 Circuits",
             "132-150 kV Transmission Line, 1 Circuit, underground",
@@ -3389,6 +3390,7 @@
             "220 kV Transmission Line Under Construction, 2 Circuits",
             "220 kV Transmission Line Under Construction, 2 Circuits, underground",
             "220 kV Transmission Line, 2 Circuits",
+            "220 kV Transmission Line, 2 Circuits, underground",
             "220 kV Transmission Line, >= 3 Circuits"
         ],
         "type": "line",
@@ -3484,7 +3486,9 @@
             "220 kV Transmission Line Under Construction, 1 Circuit",
             "220 kV Transmission Line Under Construction, 2 Circuits",
             "220 kV Transmission Line Under Construction, 2 Circuits, underground",
-            "220 kV Transmission Line, 1 Circuit, underground"
+            "220 kV Transmission Line, 1 Circuit, underground",
+            "220 kV Transmission Line Under Construction, 1 Circuit, underground",
+            "220 kV Transmission Line, 2 Circuits, underground"
         ],
         "type": "line",
         "source": "mapbox://rusty.cm0b8gzp",
@@ -3671,7 +3675,8 @@
             "380-400 kV Transmission Line, >= 3 Circuits",
             "380-400 kV Transmission Line Under Construction, 2 Circuits",
             "380-400 kV Transmission Line, 2 Circuits with 1 Circuit Mounted",
-            "380-400 kV Transmission Line, 2 Circuits"
+            "380-400 kV Transmission Line, 2 Circuits",
+            "380-400 kV Transmission Line, 2 Circuits, underground"
         ],
         "type": "line",
         "source": "mapbox://rusty.cm0b8gzp",
@@ -3771,7 +3776,8 @@
                 "380-400 kV Transmission Line, 1 Circuit",
                 "380-400 kV Transmission Line, 2 Circuits",
                 "380-400 kV Transmission Line, 2 Circuits with 1 Circuit Mounted",
-                "380-400 kV Transmission Line, >= 3 Circuits"
+                "380-400 kV Transmission Line, >= 3 Circuits",
+                "380-400 kV Transmission Line, 2 Circuits, underground"
             ]
         ],
         "type": "line",
@@ -4011,6 +4017,7 @@
                 "132-150 kV Transmission Line Under Construction, 2 Circuits",
                 "220 kV Transmission Line Under Construction, 1 Circuit",
                 "220 kV Transmission Line Under Construction, 2 Circuits",
+                "220 kV Transmission Line Under Construction, 1 Circuit, underground",
                 "220 kV Transmission Line Under Construction, 2 Circuits, underground",
                 "300-330 kV Transmission Line Under Construction, 1 Circuit",
                 "300-330 kV Transmission Line Under Construction, 2 Circuits",
