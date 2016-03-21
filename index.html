@@ -294,7 +294,10 @@ small, .prose.small, .small {
 
 
 .dark h2 {color: #fff;}
-
+ul.block > li {
+    float: none;
+}
+.button.small {padding: 0.875rem 1.2rem 0.9375rem 1.2rem;}
     </style>
 </head>
 <body>
@@ -540,9 +543,10 @@ small, .prose.small, .small {
             Network of Transmission System Operators.
         </p>
         <p>
-            In general he map shows all transmission lines designed for 220kV voltage and higher and generation stations with net generation capacity of more than 100MW.
+            In general the map shows all transmission lines designed for 220kV voltage and higher and generation stations with net generation capacity of more than 100MW.
         </p>
         <a href="#details" data-reveal-id="fullDetails" class="button small" style="margin-bottom: 10px;">Full Details</a>
+        <a id="help" href="#help" class="button small success" style="margin-bottom: 10px;">Click any feature for extra info</a>
 
 
     <ul class="accordion" data-accordion>
@@ -577,12 +581,12 @@ small, .prose.small, .small {
         <li><span class="bg_icon solar"></span>Solar</li>
         <li><span class="bg_icon other"></span>Other</li>
         <li style="display: block;width: 100%;"><span class="bg_icon cons_hor"></span><span class="bg_icon cons_dia"></span>Under Construction</li>-->
-        <ul class="inline-list">
-        <li><span class="bg_icon hydro_pure_ps" style=""></span>Hydro Pure pumped Storage</li>
-        <li><span class="bg_icon hydro_pure_storage" style=""></span>Hydro Pure Storage</li>
-        <li><span class="bg_icon hydro_ror" style=""></span>Hydro Run-of-river and pondage</li>
-        <li><span class="bg_icon hydro_mixed" style=""></span>Hydro Mixed pumped storage</li>
-        <li><span class="bg_icon hydro_marine" style=""></span>Hydro Marine (tidal/wave)</li>
+        <ul class="inline-list block">
+        <li style="display: block;width: 100%;"><span class="bg_icon tlbr_cons"></span><span class="bg_icon ver_cons"></span><span class="bg_icon hor_cons"></span><span class="bg_icon bltr_cons"></span>Under Construction</li>
+
+        <li><span class="bg_icon biomass" style=""></span>Biomass</li>
+        <li><span class="bg_icon biogas" style=""></span>Biogas</li>
+        
         <li><span class="bg_icon fossil_brown_lignite" style=""></span>Fossil Brown coal/Lignite</li>
         <li><span class="bg_icon fossil_coal_gas" style=""></span>Fossil Coal-derived gas</li>
         <li><span class="bg_icon fossil_gas" style=""></span>Fossil Gas</li>
@@ -592,23 +596,33 @@ small, .prose.small, .small {
         <li><span class="bg_icon fossil_peat" style=""></span>Fossil Peat</li>
         <li><span class="bg_icon fossil_mixed" style=""></span>Fossil Mixed fuels</li>
         <li><span class="bg_icon fossil_other" style=""></span>Fossil Other</li>
+        
+        <li><span class="bg_icon hydro_pure_ps" style=""></span>Hydro Pure pumped Storage</li>
+        <li><span class="bg_icon hydro_pure_storage" style=""></span>Hydro Pure Storage</li>
+        <li><span class="bg_icon hydro_ror" style=""></span>Hydro Run-of-river and pondage</li>
+        <li><span class="bg_icon hydro_mixed" style=""></span>Hydro Mixed pumped storage</li>
+        <li><span class="bg_icon hydro_marine" style=""></span>Hydro Marine (tidal/wave)</li>
+
         <li><span class="bg_icon nuclear" style=""></span>Nuclear</li>
+        
+        <li><span class="bg_icon solar_pv" style=""></span>Solar PV</li>
+        <li><span class="bg_icon solar_thermal" style=""></span>Solar thermal</li>
+        
         <li><span class="bg_icon waste_nr" style=""></span>Waste (non renewable)</li>
         <li><span class="bg_icon waste_renewable" style=""></span>Waste (renewable)</li>
         <li><span class="bg_icon waste_mixed" style=""></span>Waste (mixed)</li>
-        <li><span class="bg_icon solar_pv" style=""></span>Solar PV</li>
-        <li><span class="bg_icon solar_thermal" style=""></span>Solar thermal</li>
-        <li><span class="bg_icon biomass" style=""></span>Biomass</li>
-        <li><span class="bg_icon biogas" style=""></span>Biogas</li>
+        
         <li><span class="bg_icon wind" style=""></span>Wind</li>
+        
         <li><span class="bg_icon other_nrenew" style=""></span>Other (non renewable)</li>
         <li><span class="bg_icon other_renew" style=""></span>Other (renewable)</li>
         <li><span class="bg_icon other_nl" style=""></span>Other (not listed)</li>
+        
         <li><span class="bg_icon substation" style=""></span>Substation</li>
         <li><span class="bg_icon converter" style=""></span>Converter station</li>
         <li><span class="bg_icon converter_b2b" style=""></span>Converter station back-to-back</li>
         <li><span class="bg_icon power_plus_sub" style=""></span>Power plants and substations</li>
-        <li style="display: block;width: 100%;"><span class="bg_icon tlbr_cons"></span><span class="bg_icon ver_cons"></span><span class="bg_icon hor_cons"></span><span class="bg_icon bltr_cons"></span>Under Construction</li>
+        
         </ul>
       </div>
       </li>
@@ -652,7 +666,8 @@ if (!mapboxgl.supported()) {
     map.on('click', function(e) {
           map.featuresAt(e.point, {radius: 3, includeGeometry:false}, function(err, features) {
               if (err) throw err;
-              
+              //console.log(e.point);
+              //console.log(e.lngLat);
               clickedFeatures = []
 
               for (var i = features.length - 1; i >= 0; i--) {
@@ -662,7 +677,7 @@ if (!mapboxgl.supported()) {
                     clickedFeatures.push(feature.properties)
                 }
               };
-              console.log(JSON.stringify(clickedFeatures, null, 2));
+              //console.log(JSON.stringify(clickedFeatures, null, 2));
 
               console.log("Zoom: " + map.getZoom())
               popUp = ''
@@ -727,9 +742,36 @@ var layerList = document.getElementById('menu');
 
 for (var key in map.style._layers) {
     if (map.style._layers[key]['sourceLayer'] == "ee_lines_w") {
-        console.log(map.style._layers[key]['id']);
+        console.log(map.style._layers[key]['filter'].length);
     }
   
+}
+
+
+
+function helpTo(){
+    map.flyTo({
+        center: [5.0535557871045, 51.661954989106476],
+        zoom: 9,
+        bearing: 0,
+        speed: 0.5, // make the flying slow
+        curve: 1
+    });
+
+    var tooltip = new mapboxgl.Popup({closeOnClick: false})
+    .setLngLat([5.0535557871045, 51.661954989106476])
+    .setHTML('<div><strong>380-400 kV Transmission Line, 2 Circuits</strong></div>\
+    <div>BE — NL</div><hr>\
+    <div><strong>380-400 kV Transmission Line, 2 Circuits</strong></div>\
+    <div>NL — NL</div><hr>\
+    <div><strong>380-400 kV Transmission Line, 1 Circuit</strong></div>\
+    <div>NL — NL</div><hr>\
+    <div><strong>380-400 kV Transmission Line, &gt;= 3 Circuits</strong></div>\
+    <div>NL — NL</div><hr>\
+    <div><strong>Substation</strong></div>\
+    <div>Geertruidenberg</div><hr>')
+    .addTo(map);
+
 }
 
 var $radius = document.getElementById('radius');
@@ -772,6 +814,11 @@ $radius.querySelector('input').addEventListener('change', redraw);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
 <script>
   $(document).foundation();
+  $( document ).ready(function() {
+    $('#help').click(function(e) {  
+        helpTo();
+    });
+   });
 </script>
 </body>
 </html>
