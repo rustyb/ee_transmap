@@ -2936,7 +2936,58 @@
             "text-opacity": 0.25
         },
         "source-layer": "marine_label"
-    }, {
+    },
+    {
+"interactive": true,
+"minzoom": 3,
+"layout": {
+"visibility": "visible"
+},
+"metadata": {},
+"filter": [
+"all",
+[
+"in",
+"$type",
+"Polygon",
+"Point",
+"LineString"
+],
+[
+"==",
+"underground",
+1
+]
+],
+"type": "line",
+"source": "mapbox://rusty.cm0b8gzp",
+"id": "UC copy",
+"paint": {
+"line-color": "hsl(0, 0%, 67%)",
+"line-width": {
+"base": 1.25,
+"stops": [
+[
+3,
+0.6
+],
+[
+6,
+3
+],
+[
+7,
+4
+],
+[
+22,
+20
+]
+]
+}
+},
+"source-layer": "ee_lines_w"
+}, {
         "interactive": false,
         "layout": {
             "visibility": "visible",
