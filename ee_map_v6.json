@@ -4977,7 +4977,7 @@
                     ]
             },
             "text-anchor": "bottom",
-            "text-field": "{name_eng}",
+            "text-field": "{annotation}",
             "icon-ignore-placement": true
         },
         "type": "symbol",

@@ -107,7 +107,7 @@ ul li .routeLine > div {
 .fill-exist{background-color:#d6d6d6;}
 .fill-bubble{background-color:#e1dcd3;border:1px solid #000;padding: 5px 10px;margin-bottom: 0px;}
 #legend > ul li {border-bottom: 0px;padding-right:10px;}
-#legend {border-bottom:2px solid #D8D7D3;margin-top:0px;border-top:1px solid #D8D7D3;padding-top:10px;}
+#legend {border-bottom:2px solid #D8D7D3;margin-top:0px;border-top:1px solid #D8D7D3;padding-top:10px;color:#444;}
 body {background: #FAF9F7;}
 
 .mapboxgl-popup-content {
@@ -286,20 +286,269 @@ small, .prose.small, .small {
     color: #fff;
     background-color: #d53880;
 }
+
+.reveal-modal {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+
+.dark h2 {color: #fff;}
+
     </style>
 </head>
 <body>
 <style>
     
 </style>
+
+<!-- Reveal Modals begin -->
+<div id="fullDetails" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+  <h2 id="fullDetailsTitle">Map Description and Exceptions</h2>
+  <p>The data used in the production of this map has been sourced from ENTSO-E member companies, the <a href="http://www.ost.al/index.php/en/">Albanian Transmission System Operator</a>, <a href="http://www.sonelgaz.dz/">Sonelgaz</a>, <a href="#">System Operator of the UPS of Russia</a> and <a href="#">KRENERGO National Power Company</a>.</p>
+  <p>The map is a comprehensive illustration of the interconnected networks, it shows existing elements and those under construction.</p>
+  <h3>Lines</h3>
+  <p>High-voltage cables/lines with towers designed for voltages of: 
+    <ul class="bullets">
+        <li>220kV and higher</li>
+        <li>110 kV to 150 kV in the areas of Cyprus, Denmark, Iceland, Iceland, Israel/PA and Norway</li>
+        <li>110 kV to 150 kV if these lines cross national frontiers and are operated by TSOs</li>
+    </ul>
+    </p>
+  <h3>Generation Stations</h3>
+  <p>All existing power plants and those under construction with NGC (Net Generating Capacity) equal or higher than the values indicated in the following table are displayed on the map even if they are not connected to the high-voltage network.</p>
+  <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-9hbo{font-weight:bold;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-9hbo">Country</th>
+    <th class="tg-9hbo">Non-Renewable</th>
+    <th class="tg-9hbo">Renewable</th>
+    <th class="tg-9hbo">Country</th>
+    <th class="tg-9hbo">Non-Renewable</th>
+    <th class="tg-9hbo">Renewable</th>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Albania</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">20</td>
+    <td class="tg-9hbo">Iceland</td>
+    <td class="tg-yw4l">10</td>
+    <td class="tg-yw4l">10</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Austria</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-9hbo">Ireland</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Belg ium</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-9hbo">Italy</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Bosnia &amp; Herzegovina</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-9hbo">Latvia</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">40</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Bulgaria</td>
+    <td class="tg-yw4l">75</td>
+    <td class="tg-yw4l">60</td>
+    <td class="tg-9hbo">Lithuania</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">30</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Croatia</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">40</td>
+    <td class="tg-9hbo">Luxembourg</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Cyprus</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">30</td>
+    <td class="tg-9hbo">Montenegro</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Czech Republic</td>
+    <td class="tg-yw4l">150</td>
+    <td class="tg-yw4l">30</td>
+    <td class="tg-9hbo">The Netherlands</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Denmark</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-9hbo">Norway</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Estonia</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-9hbo">Poland</td>
+    <td class="tg-yw4l">200</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Finland</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-9hbo">Portugal</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">France</td>
+    <td class="tg-yw4l">150</td>
+    <td class="tg-yw4l">80</td>
+    <td class="tg-9hbo">Romania</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">FYROM</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-9hbo">Russia</td>
+    <td class="tg-yw4l">80</td>
+    <td class="tg-yw4l">45</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">GB (England &amp; Wales)</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-9hbo">Serbia</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">GB (Northern Ireland)</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-9hbo">Slovak Republic</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">100</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">GB (Scotland South)</td>
+    <td class="tg-yw4l">30</td>
+    <td class="tg-yw4l">30</td>
+    <td class="tg-9hbo">Slovenia</td>
+    <td class="tg-yw4l">80</td>
+    <td class="tg-yw4l">10</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">GB (Scotland North)</td>
+    <td class="tg-yw4l">10</td>
+    <td class="tg-yw4l">10</td>
+    <td class="tg-9hbo">Spain</td>
+    <td class="tg-yw4l">65</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Germany</td>
+    <td class="tg-yw4l">200</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-9hbo">Sweden</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">100</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Greece</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-9hbo">Switzerland</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">100</td>
+  </tr>
+  <tr>
+    <td class="tg-9hbo">Hungary</td>
+    <td class="tg-yw4l">50</td>
+    <td class="tg-yw4l">5</td>
+    <td class="tg-9hbo">Turkey</td>
+    <td class="tg-yw4l">100</td>
+    <td class="tg-yw4l">50</td>
+  </tr>
+</table>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+<!-- END MODAL -->
+
+
   <div class="row" style="height:100%;">
-    <div class="large-3 columns">
+    <!--<div class="large-3 columns">
     <div class="logo">
         <h2 style="padding-top: 1em;padding-bottom: .5em;margin-bottom: .5em;border-bottom: 0px;padding-bottom: 0;border-bottom:0px;">
         <a href="#" style="color:#63b6e5;">ENTSO-E Transmission System</a>
         </h2>
     </div>
-      <div id="legend" class="legends">
+    
+
+      
+      <div class="copyright">
+        <p>&copy; ENTSO-E. Map data is accurate as of February 2015.</p>
+      </div>
+  </div>-->
+    
+    
+    <div class="large-12 columns" style="height:100%;">
+      <div id="map_area">
+
+        <div id='map'></div>
+        <div id='menu'>
+          <!--<label>Switch Between Styles</label>
+          <input id='v6' type='radio' name='rtoggle' value='v6' checked='checked'>
+          <label for='v6'>version 6</label> <br>
+          <input id='v5' type='radio' name='rtoggle' value='v4' checked='checked'>
+          <label for='v5'>version 4</label> <br>
+          <input id='v3' type='radio' name='rtoggle' value='v3'>
+          <label for='v3'>version 3</label> <br>
+          <input id='v2' type='radio' name='rtoggle' value='v2' >
+          <label for='v2'>version 2</label>-->
+        </div>
+        <div class="pin-topleft pad2 beta-container fill-darkgrey dark" style="width: 400px;max-height: 100%;overflow-y: scroll;">
+        <h2 style="padding-top: 1em;padding-bottom: .5em;margin-bottom: .5em;border-bottom: 0px;padding-bottom: 0;border-bottom:0px;">
+            ENTSO-E Transmission System Map
+        </h2>
+        <p>
+            This map is a comprehensive illustration of the transmission system network operated by members of the European 
+            Network of Transmission System Operators.
+        </p>
+        <p>
+            In general he map shows all transmission lines designed for 220kV voltage and higher and generation stations with net generation capacity of more than 100MW.
+        </p>
+        <a href="#details" data-reveal-id="fullDetails" class="button small" style="margin-bottom: 10px;">Full Details</a>
+
+
+    <ul class="accordion" data-accordion>
+      <li class="accordion-navigation">
+      <a href="#legend">Legend</a>
+      <div id="legend" class="legends content">
       <strong>Lines </strong>
        <ul class="inline-list">
         <li></li>
@@ -362,31 +611,10 @@ small, .prose.small, .small {
         <li style="display: block;width: 100%;"><span class="bg_icon tlbr_cons"></span><span class="bg_icon ver_cons"></span><span class="bg_icon hor_cons"></span><span class="bg_icon bltr_cons"></span>Under Construction</li>
         </ul>
       </div>
-
-
-      
-      <div class="copyright">
-        <p>&copy; ENTSO-E. Map data is accurate as of February 2015.</p>
-      </div>
-  </div>
-    
-    
-    <div class="large-9 columns" style="height:100%;">
-      <div id="map_area">
-
-        <div id='map'></div>
-        <div id='menu'>
-          <!--<label>Switch Between Styles</label>
-          <input id='v6' type='radio' name='rtoggle' value='v6' checked='checked'>
-          <label for='v6'>version 6</label> <br>
-          <input id='v5' type='radio' name='rtoggle' value='v4' checked='checked'>
-          <label for='v5'>version 4</label> <br>
-          <input id='v3' type='radio' name='rtoggle' value='v3'>
-          <label for='v3'>version 3</label> <br>
-          <input id='v2' type='radio' name='rtoggle' value='v2' >
-          <label for='v2'>version 2</label>-->
+      </li>
+    </ul>            
         </div>
-        <div class="pin-topright pad2 beta-container dark">
+        <!--<div class="pin-topright pad2 beta-container dark">
             <div class="fill-darkgrey keyline-top small dark z10 pad2">
               <span class="phase-tag">experimental</span>
               <h3 class="block space-bottom1">Filter Generators</h3>
@@ -396,7 +624,7 @@ small, .prose.small, .small {
                 <input class='col12' type='range' value='0' min='1' max='5000' step='1'>
               </fieldset>
             </div>
-        </div>
+        </div>-->
         
 
       </div>
@@ -417,7 +645,7 @@ if (!mapboxgl.supported()) {
         hash: true
     });
 
-    map.addControl(new mapboxgl.Navigation({position: 'top-left'}));
+    map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
 
     
 
@@ -489,6 +717,20 @@ var layerList = document.getElementById('menu');
     }
 
 
+/*for (var i = 0; i < map.style._layers.length; i++) {
+       layer = map.style._layers[i]
+
+       if (layer.sourceLayer == "ee_lines_w") {
+        console.log(layer.id)
+       }
+   }   */
+
+for (var key in map.style._layers) {
+    if (map.style._layers[key]['sourceLayer'] == "ee_lines_w") {
+        console.log(map.style._layers[key]['id']);
+    }
+  
+}
 
 var $radius = document.getElementById('radius');
 var $mwValue = document.getElementById('mw-value');
@@ -506,12 +748,14 @@ function updateRadiusLabel(r) {
 function redraw(e) {
    map.setFilter('ee_points', ['>=', 'mw', parseInt(params.radius, 10)])
    map.setLayoutProperty('ee_points', 'icon-size', 1.2)
+   console.log('FIRE MAP FILTER');
 };
 
 
 // Radius changer
 $radius.querySelector('input').addEventListener('input', function(e) {
   //setHash({radius: e.target.value });
+  console.log('FIRE EVENT');
   params.radius = e.target.value;
   //console.log(e.target.value.toFixed(0) );
   updateRadiusLabel(parseInt(params.radius, 10));
@@ -523,8 +767,11 @@ $radius.querySelector('input').addEventListener('change', redraw);
 }
 
 
-
 </script>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script>
 </body>
 </html>
