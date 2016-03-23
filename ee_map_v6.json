@@ -5005,8 +5005,8 @@
             },
             "text-allow-overlap": false,
             "icon-image": "{mb_symbol}",
-            "symbol-avoid-edges": true,
-            "text-ignore-placement": true,
+            "symbol-avoid-edges": false,
+            "text-ignore-placement": false,
             "text-transform": "none",
             "text-font": [
                 "DIN Offc Pro Medium",
@@ -5035,7 +5035,7 @@
                     ]
             },
             "text-anchor": "bottom",
-            "text-field": "{annotation}",
+            "text-field": "{name_eng}",
             "icon-ignore-placement": true
         },
         "type": "symbol",
