@@ -503,6 +503,22 @@ ul.block > li {
 <!-- END MODAL -->
 
 
+<!-- Reveal Modals begin -->
+<div id="Error" class="reveal-modal medium" data-reveal aria-labelledby="secondModalTitle" aria-hidden="true" role="dialog">
+  <h2 id="fullDetailsTitle">Uh Oh - something went wrong!</h2>
+
+  <p>We're using some a new technology to bring our new maps, called WebGL. So sometimes things don't always workd as planned. Unfortunately this does not work with older web browsers like Internet Explorer 7/8/9/10.</p>
+
+  <p class="panel">It would seem that your browser does not support WebGL.</p>
+
+<p>If you're using Internet Explorer 11, this may be caused by using IE compatibility mode when using <a href="https://www.entsoe.eu">www.entsoe.eu</a></p>
+<h2><strong>None of this make any sense to you?</strong></h2>
+<p><a href="https://rustyb.github.io/ee_transmap/" class="button success radius">Try the alternative map</a>
+    or send an email to <a href="mailto:colin.broderick@entsoe.eu" class="button radius">colin.broderick@entsoe.eu</a>
+</p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
   <div class="row" style="height:100%;">
     <!--<div class="large-3 columns">
     <div class="logo">
@@ -646,10 +662,24 @@ ul.block > li {
     
   </div>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+  $( document ).ready(function() {
+    $('#help').click(function(e) {  
+        helpTo();
+    });
+   });
+</script>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoicnVzdHkiLCJhIjoib0FjUkJybyJ9.V9QoXck_1Z18MhpwyIE2Og';
 if (!mapboxgl.supported()) {
-    alert('Your browser does not support Mapbox GL');
+    $( document ).ready(function() {
+        $('#Error').foundation('reveal', 'open');
+    });
+    //alert('Your browser does not support Mapbox GL');
 } else {
     var bounds = [
         [ -53.78906249999999,21.12549763660628,], // Southwest coordinates
@@ -658,7 +688,7 @@ if (!mapboxgl.supported()) {
 
     var map = new mapboxgl.Map({
         container: 'map',
-        style: './ee_map_v6.json',
+        style: './ee_map_v6.js',
         center: [2.99,47.71],
         zoom: 3.81,
         hash: true,
@@ -816,15 +846,6 @@ $radius.querySelector('input').addEventListener('change', redraw);
 
 
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/jquery.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-<script>
-  $(document).foundation();
-  $( document ).ready(function() {
-    $('#help').click(function(e) {  
-        helpTo();
-    });
-   });
-</script>
+
 </body>
 </html>
