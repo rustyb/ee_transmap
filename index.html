@@ -651,12 +651,18 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicnVzdHkiLCJhIjoib0FjUkJybyJ9.V9QoXck_1Z18Mhpw
 if (!mapboxgl.supported()) {
     alert('Your browser does not support Mapbox GL');
 } else {
+    var bounds = [
+        [ -53.78906249999999,21.12549763660628,], // Southwest coordinates
+        [75.9375,71.13098770917023]  // Northeast coordinates
+    ];
+
     var map = new mapboxgl.Map({
         container: 'map',
         style: './ee_map_v6.json',
         center: [2.99,47.71],
         zoom: 3.81,
-        hash: true
+        hash: true,
+        maxBounds: bounds // Sets bounds as max
     });
 
     map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));

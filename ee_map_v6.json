@@ -5037,10 +5037,86 @@
             "text-anchor": "bottom",
             "text-field": "{name_eng}",
             "icon-ignore-placement": true
-        },
+        },"filter": [
+            "!=",
+            "name_eng",
+            "unknown"
+        ],
         "type": "symbol",
         "source": "mapbox://rusty.02rit83j",
         "id": "ee_points",
+        "paint": {
+            "text-halo-color": "#fff",
+            "text-halo-width": 2
+        },
+        "source-layer": "ee_stations_w"
+    }, {
+        "interactive": true,
+        "layout": {
+            "text-optional": true,
+            "text-size": {
+                "base": 0.85,
+                "stops": [
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        6,
+                        0
+                    ],
+                    [
+                        7,
+                        10
+                    ],
+                    [
+                        22,
+                        15
+                    ]
+                ]
+            },
+            "text-allow-overlap": false,
+            "icon-image": "{mb_symbol}",
+            "symbol-avoid-edges": false,
+            "text-ignore-placement": false,
+            "text-transform": "none",
+            "text-font": [
+                "DIN Offc Pro Medium",
+                "Arial Unicode MS Regular"
+            ],
+            "icon-allow-overlap": true,
+            "text-offset": [
+                0, -0.9
+            ],
+            "icon-optional": false,
+            "icon-size": {
+                "base": 1,
+                    "stops": [
+                        [
+                            4,
+                            0
+                        ],
+                        [
+                            7,
+                            0.7
+                        ],
+                        [
+                            22,
+                            1
+                        ]
+                    ]
+            },
+            "text-anchor": "bottom",
+            "text-field": "",
+            "icon-ignore-placement": true
+        },"filter": [
+            "==",
+            "name_eng",
+            "unknown"
+        ],
+        "type": "symbol",
+        "source": "mapbox://rusty.02rit83j",
+        "id": "ee_points_unknown",
         "paint": {
             "text-halo-color": "#fff",
             "text-halo-width": 2
