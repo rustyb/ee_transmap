@@ -298,7 +298,9 @@ ul.block > li {
     float: none;
 }
 .button.small {padding: 0.875rem 1.2rem 0.9375rem 1.2rem;}
+.ee-atrib {font-weight: bold;color: rgba(0,0,0,0.75);background: rgba(255,255,255,0.5);padding-left: 5px;}
     </style>
+
 </head>
 <body>
 <style>
@@ -513,7 +515,7 @@ ul.block > li {
 
 <p>If you're using Internet Explorer 11, this may be caused by using IE compatibility mode when using <a href="https://www.entsoe.eu">www.entsoe.eu</a></p>
 <h2><strong>None of this make any sense to you?</strong></h2>
-<p><a href="https://rustyb.github.io/ee_transmap/" class="button success radius">Try the alternative map</a>
+<p><a href="https://rustyb.github.io/ee_transmap/" class="button success radius" target="_blank">Try the alternative map</a>
     or send an email to <a href="mailto:colin.broderick@entsoe.eu" class="button radius">colin.broderick@entsoe.eu</a>
 </p>
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
@@ -549,6 +551,9 @@ ul.block > li {
           <label for='v3'>version 3</label> <br>
           <input id='v2' type='radio' name='rtoggle' value='v2' >
           <label for='v2'>version 2</label>-->
+        </div>
+        <div class="pin-topright">
+            <a class="button radius" style="margin-right:40px;margin-top:20px;" href="mailto:colin.broderick@entsoe.eu">Give Feedback</a>
         </div>
         <div class="pin-topleft pad2 beta-container fill-darkgrey dark" style="width: 400px;max-height: 100%;overflow-y: scroll;">
         <h2 style="padding-top: 1em;padding-bottom: .5em;margin-bottom: .5em;border-bottom: 0px;padding-bottom: 0;border-bottom:0px;">
@@ -688,7 +693,7 @@ if (!mapboxgl.supported()) {
 
     var map = new mapboxgl.Map({
         container: 'map',
-        style: './ee_map_v6.json',
+        style: './ee_map_v6.js',
         center: [2.99,47.71],
         zoom: 3.81,
         hash: true,
@@ -697,7 +702,13 @@ if (!mapboxgl.supported()) {
 
     map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
 
-    
+    // make additions to the credits
+    var credit = document.createElement('a');
+    credit.href = 'http://www.entsoe.eu';
+    credit.className = 'inline fr color-white ee-atrib';
+    credit.target = '_target';
+    credit.textContent = '© ENTSO-E - Data 01/01/2016';
+    map.getContainer().querySelector('.mapboxgl-ctrl-bottom-right').appendChild(credit);
 
     map.on('click', function(e) {
           map.featuresAt(e.point, {radius: 3, includeGeometry:false}, function(err, features) {
