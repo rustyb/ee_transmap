@@ -109,6 +109,10 @@
         "mapbox://rusty.02rit83j": {
             "url": "mapbox://rusty.02rit83j",
             "type": "vector"
+        },
+        "mapbox://rusty.99126792": {
+            "url": "mapbox://rusty.99126792",
+            "type": "vector"
         }
     },
     "sprite": "mapbox://sprites/rusty/cijftgxlo0035aim4b01kmevc",
@@ -2960,7 +2964,7 @@
 ]
 ],
 "type": "line",
-"source": "mapbox://rusty.cm0b8gzp",
+"source": "mapbox://rusty.99126792",
 "id": "UC copy",
 "paint": {
 "line-color": "hsl(0, 0%, 67%)",
@@ -2986,7 +2990,7 @@
 ]
 }
 },
-"source-layer": "ee_lines_w"
+"source-layer": "lines"
 }, {
         "interactive": false,
         "layout": {
@@ -3002,7 +3006,7 @@
             "DC-Line, 2 Circuits"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "dc multi",
         "paint": {
             "line-opacity": {
@@ -3076,7 +3080,7 @@
             ],
             "line-color": "rgba(139,14,207,1)"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "layout": {
@@ -3094,7 +3098,7 @@
             "DC-Line, 1 Circuit, underground"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "DC Lines",
         "paint": {
             "line-color": "rgba(139,14,207,1)",
@@ -3120,7 +3124,7 @@
                 ]
             }
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "layout": {
@@ -3134,7 +3138,7 @@
             "110"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "110kV",
         "paint": {
             "line-color": "rgba(0,0,0,1)",
@@ -3152,7 +3156,7 @@
                 ]
             }
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": false,
         "layout": {
@@ -3169,7 +3173,7 @@
             "132-150 kV Transmission Line, 2 Circuits, underground"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "132kv Multi",
         "paint": {
             "line-opacity": {
@@ -3243,7 +3247,7 @@
             ],
             "line-color": "rgba(0,0,0,1)"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": false,
         "id": "132kv Multi copy",
@@ -3340,7 +3344,7 @@
             "Interconnection for Voltage < 200 kV, 2 Circuits"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "132kV",
         "paint": {
             "line-color": "rgba(0,0,0,1)",
@@ -3375,7 +3379,7 @@
                 ]
             }
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": false,
         "layout": {
@@ -3394,7 +3398,7 @@
             "220 kV Transmission Line, >= 3 Circuits"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "220kV Multi",
         "paint": {
             "line-opacity": {
@@ -3468,7 +3472,7 @@
             ],
             "line-color": "rgba(10,105,10,1)"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "layout": {
@@ -3491,7 +3495,7 @@
             "220 kV Transmission Line, 2 Circuits, underground"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "220kV",
         "paint": {
             "line-color": "rgba(10,105,10,1)",
@@ -3517,7 +3521,7 @@
                 ]
             }
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": false,
         "layout": {
@@ -3534,7 +3538,7 @@
             "300-330 kV Transmission Line, >= 3 Circuits"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "300-330kV Multi",
         "paint": {
             "line-opacity": {
@@ -3608,7 +3612,7 @@
             ],
             "line-color": "rgba(224,140,22,1)"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "layout": {
@@ -3633,7 +3637,7 @@
             ]
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "300-330kV",
         "paint": {
             "line-color": "rgba(224,140,22,1)",
@@ -3659,7 +3663,7 @@
                 ]
             }
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": false,
         "layout": {
@@ -3679,7 +3683,7 @@
             "380-400 kV Transmission Line, 2 Circuits, underground"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "380-400kV Multi",
         "paint": {
             "line-opacity": {
@@ -3753,7 +3757,7 @@
             ],
             "line-color": "rgba(237,17,17,1)"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "layout": {
@@ -3781,7 +3785,7 @@
             ]
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "380-400kV",
         "paint": {
             "line-width": {
@@ -3807,7 +3811,7 @@
             },
             "line-color": "rgba(237,17,17,1)"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": false,
         "layout": {
@@ -3823,7 +3827,7 @@
             "500 kV Transmission Line, 2 Circuits"
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "500kV Multi",
         "paint": {
             "line-opacity": {
@@ -3897,7 +3901,7 @@
             ],
             "line-color": "rgba(168,0,0,1)"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "layout": {
@@ -3922,7 +3926,7 @@
             ]
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "500kV",
         "paint": {
             "line-color": "rgba(168,0,0,1)",
@@ -3948,7 +3952,7 @@
                 ]
             }
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "layout": {
@@ -3970,7 +3974,7 @@
             ]
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "750kV",
         "paint": {
             "line-color": "rgba(32,72,128,1)",
@@ -3996,7 +4000,7 @@
                 ]
             }
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": false,
         "layout": {
@@ -4031,7 +4035,7 @@
             ]
         ],
         "type": "line",
-        "source": "mapbox://rusty.cm0b8gzp",
+        "source": "mapbox://rusty.99126792",
         "id": "UC",
         "paint": {
             "line-dasharray": {
@@ -4080,7 +4084,7 @@
             },
             "line-color": "#fff"
         },
-        "source-layer": "ee_lines_w"
+        "source-layer": "lines"
     }, {
         "interactive": true,
         "minzoom": 12,
@@ -5043,13 +5047,13 @@
             "unknown"
         ],
         "type": "symbol",
-        "source": "mapbox://rusty.02rit83j",
+        "source": "mapbox://rusty.99126792",
         "id": "ee_points",
         "paint": {
             "text-halo-color": "#fff",
             "text-halo-width": 2
         },
-        "source-layer": "ee_stations_w"
+        "source-layer": "points"
     }, {
         "interactive": true,
         "layout": {
