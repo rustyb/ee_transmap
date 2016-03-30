@@ -711,7 +711,7 @@ if (!mapboxgl.supported()) {
     map.getContainer().querySelector('.mapboxgl-ctrl-bottom-right').appendChild(credit);
 
     map.on('click', function(e) {
-          map.featuresAt(e.point, {radius: 3, includeGeometry:false}, function(err, features) {
+          map.featuresAt(e.point, {radius: 8, includeGeometry:false}, function(err, features) {
               if (err) throw err;
               //console.log(e.point);
               //console.log(e.lngLat);
@@ -720,7 +720,7 @@ if (!mapboxgl.supported()) {
               for (var i = features.length - 1; i >= 0; i--) {
                 feature = features[i]
                
-                if (feature['layer']['source'] == "mapbox://rusty.02rit83j" || feature['layer']['source'] == "mapbox://rusty.cm0b8gzp"){
+                if (feature['layer']['source'] == "mapbox://rusty.02rit83j" || feature['layer']['source'] == "mapbox://rusty.cm0b8gzp" || feature['layer']['source'] == "mapbox://rusty.99126792"){
                     clickedFeatures.push(feature.properties)
                 }
               };
