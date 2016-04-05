@@ -8,8 +8,8 @@
 
     <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         html, body { margin:0; padding:0; height:100%;}
         .row {max-width: inherit;}
@@ -679,7 +679,7 @@ ul.block > li {
 </script>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoicnVzdHkiLCJhIjoib0FjUkJybyJ9.V9QoXck_1Z18MhpwyIE2Og';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZW50c29lIiwiYSI6ImNpbWxxYXJocDAwMG53Ymx3N2JxNGhtZDYifQ.YjNgK9usqRNrzxWXnR152g';
 if (!mapboxgl.supported()) {
     $( document ).ready(function() {
         $('#Error').foundation('reveal', 'open');
@@ -693,7 +693,7 @@ if (!mapboxgl.supported()) {
 
     var map = new mapboxgl.Map({
         container: 'map',
-        style: './ee_map_v6.js',
+        style: './ee_map_v7.js',
         center: [2.99,47.71],
         zoom: 4,
         hash: true,
@@ -711,23 +711,18 @@ if (!mapboxgl.supported()) {
     map.getContainer().querySelector('.mapboxgl-ctrl-bottom-right').appendChild(credit);
 
     map.on('click', function(e) {
-          map.featuresAt(e.point, {radius: 8, includeGeometry:false}, function(err, features) {
-              if (err) throw err;
-              //console.log(e.point);
-              //console.log(e.lngLat);
-              clickedFeatures = []
+        var features = map.queryRenderedFeatures(e.point)
 
-              for (var i = features.length - 1; i >= 0; i--) {
+        clickedFeatures = []
+        for (var i = features.length - 1; i >= 0; i--) {
                 feature = features[i]
                
-                if (feature['layer']['source'] == "mapbox://rusty.02rit83j" || feature['layer']['source'] == "mapbox://rusty.cm0b8gzp" || feature['layer']['source'] == "mapbox://rusty.99126792"){
+                if (feature['layer']['source'] == "mapbox://entsoe.dzotpozu" || feature['layer']['source'] == "mapbox://rusty.02rit83j" || feature['layer']['source'] == "mapbox://rusty.cm0b8gzp" || feature['layer']['source'] == "mapbox://rusty.99126792"){
                     clickedFeatures.push(feature.properties)
                 }
               };
-              //console.log(JSON.stringify(clickedFeatures, null, 2));
 
-              console.log("Zoom: " + map.getZoom())
-              popUp = ''
+        popUp = ''
               
               for (var i = clickedFeatures.length - 1; i >= 0; i--) {
                 feature = clickedFeatures[i]
@@ -747,7 +742,6 @@ if (!mapboxgl.supported()) {
                   popUp += '<div>'+feature['country_1']+' &mdash; ' +feature['country_2']+'</div>'
                 };
 
-
                 popUp += '<hr />'
 
             };
@@ -760,8 +754,6 @@ if (!mapboxgl.supported()) {
             } else {
               //info.innerHTML = '<p><strong>Select a line, station or bubble for more information.</strong></p>';
             }
-            
-          });
           
       });
 
