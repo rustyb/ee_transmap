@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta charset='utf-8' />
+    <title>ENTSO-E Online Grid Map - DRAFT</title>
+
+    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+
+    <script src='https://cdn.ravenjs.com/1.3.0/jquery,native/raven.min.js'></script>
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+
+    <meta name='twitter:site' content='@mapbox'>
+    <meta property='og:site_name' content='Mapbox' />
+    <meta name='twitter:url' content='https://api.mapbox.com/styles/v1/entsoe/cimn76g7t0040d2np7woiqswj.html?access_token=pk.eyJ1IjoiZW50c29lIiwiYSI6ImNpbzVqYmUzMDAwM3R2eWtwMnRscnI4eTEifQ.Y8voJ2RXFP81A4QFi4T0yQYjNgK9usqRNrzxWXnR152g' />
+    <meta property='og:url' content='https://api.mapbox.com/styles/v1/entsoe/cimn76g7t0040d2np7woiqswj.html?access_token=pk.eyJ1IjoiZW50c29lIiwiYSI6ImNpbzVqYmUzMDAwM3R2eWtwMnRscnI4eTEifQ.Y8voJ2RXFP81A4QFi4T0yQYjNgK9usqRNrzxWXnR152g'>
+    <meta name='twitter:title' content='entsoe-map' />
+    <meta property='og:title' content='entsoe-map' />
+    <meta name='twitter:description' content='A map made by entsoe' />
+    <meta property='og:description' content='A map made by entsoe' />
+        <meta name='twitter:image' content='https://api.mapbox.com/styles/v1/entsoe/cimn76g7t0040d2np7woiqswj/static/11.035818336456344,47.21865728558075,3.665046620556277/435x375?access_token=pk.eyJ1IjoiZW50c29lIiwiYSI6ImNpbzVqYmUzMDAwM3R2eWtwMnRscnI4eTEifQ.Y8voJ2RXFP81A4QFi4T0yQYjNgK9usqRNrzxWXnR152g' />
+        <meta property='og:image' content='https://api.mapbox.com/styles/v1/entsoe/cimn76g7t0040d2np7woiqswj/static/11.035818336456344,47.21865728558075,3.665046620556277/435x375?access_token=pk.eyJ1IjoiZW50c29lIiwiYSI6ImNpbzVqYmUzMDAwM3R2eWtwMnRscnI4eTEifQ.Y8voJ2RXFP81A4QFi4T0yQYjNgK9usqRNrzxWXnR152g' />
+    <meta name='twitter:image:width' content='435'>
+    <meta name='twitter:image:height' content='375'>
+    <meta property='og:image:width' content='435'>
+    <meta property='og:image:height' content='375'>
+    <meta name='twitter:card' content='summary_large_image'>
+    <meta property='og:type' content='website' />
+
+    <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+        .shadow {
+            box-shadow: 0 0 25px 0 rgba(0,0,0,0.15);
+        }
+        .round-bottomleft {
+            border-bottom-left-radius: 3px;
+        }
+        .mapboxgl-ctrl-nav > a {
+            border-color: rgba(0,0,0,.1);
+        }
+        @media only screen and (max-width:640px) {
+            .leaflet-left .leaflet-control,
+            .mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+                margin-top: 70px;
+            }
+            .round-bottomleft {
+                border-bottom-left-radius: 0;
+            }
+            .mobile-fullwidth {
+                width: 100%;
+                height: 60px;
+                overflow: auto;
+            }
+        }
+        .space-right8 {
+    margin-right: 90px;
+}
+    </style>
+</head>
+
+<body>
+    <div id='map'></div>
+    <div class='mobile-fullwidth z10 pin-topright round-bottomleft fcol9 shadow fill-white'>
+        <a href='https://www.entsoe.eu' class='fill-light pad2x pin-right'>
+            <div class='icon big quiet space-top2'></div>
+        </a>
+        <div class='space-right8 pad2y space-left3'>
+            <h3>ENTSO-E Transmission System Map</h3>
+            <div class='clearfix small'>Non interactive static ENTSO-E transmission map. For full details + legend please visit <a href="https://www.entsoe.eu/map/Pages/default.aspx">entsoe.eu/map</a></div>
+        </div>
+    </div>
+    <script>
+    (function() {
+        'use strict';
+
+
+       
+            renderMapboxJS();
+
+
+        function renderMapboxJS() {
+            L.mapbox.accessToken = 'pk.eyJ1IjoiZW50c29lIiwiYSI6ImNpbzVqYmUzMDAwM3R2eWtwMnRscnI4eTEifQ.Y8voJ2RXFP81A4QFi4T0yQ';
+            L.mapbox.config.HTTPS_URL = 'https://api.mapbox.com';
+            L.mapbox.config.FORCE_HTTPS = false;
+
+            window.map = L.mapbox.map('map', '', {
+                scrollWheelZoom: true,
+                minZoom: 1
+            });
+
+            L.mapbox.styleLayer('mapbox://styles/entsoe/cimn76g7t0040d2np7woiqswj').addTo(map);
+
+            if (window.location.hash) {
+                window.location.hash = window.location.hash
+                  .substring(1).split('/').slice(0, 3).join('/');
+            } else {
+                    map.setView([47.21865728558075, 11.035818336456344],  Math.round(3.665046620556277 + 1));
+            }
+
+            var hash = new L.hash(map);
+
+            hash.parseHash = function(hash) {
+                if (hash.indexOf('#') === 0) {
+                    hash = hash.substr(1);
+                }
+                var args = hash.split('/');
+                if (args.length == 3) {
+                    var zoom = parseInt(args[0], 10) + 1, // Account for zoomOffset
+                    lat = parseFloat(args[1]),
+                    lon = parseFloat(args[2]);
+                    if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
+                        return false;
+                    } else {
+                        return {
+                            center: new L.LatLng(lat, lon),
+                            zoom: zoom
+                        };
+                    }
+                } else {
+                    return false;
+                }
+            }
+
+            hash.formatHash = function(map) {
+                var center = map.getCenter(),
+                    zoom = map.getZoom() - 1,  // Account for zoomOffset
+                    precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2));
+
+                return '#' + [zoom,
+                    center.lat.toFixed(precision),
+                    center.lng.toFixed(precision)
+                ].join('/');
+            }
+        }
+    })();
+    </script>
+
+</body>
+
+</html>
