@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
 <head>
     <meta charset='utf-8' />
-    <title>ENTSO-E Online Grid Map - DRAFT</title>
+    <title>ENTSO-E Online Grid Map 2017</title>
     <link rel="shortcut icon" href="http://www.entsoe.eu/Style Library/EntsoePublishingBranding/Images/favicon.ico" type="image/vnd.microsoft.icon" id="favicon" />
     <link href='https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css' rel='stylesheet' />
 
     <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         html, body { margin:0; padding:0; height:100%;}
         .row {max-width: inherit;}
@@ -301,6 +301,18 @@ ul.block > li {
 .ee-atrib {font-weight: bold;color: rgba(0,0,0,0.75);background: rgba(255,255,255,0.5);padding-left: 5px;}
     </style>
 
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:PublishingIsFurlPage msdt:dt="string">0</mso:PublishingIsFurlPage>
+<mso:PublishingContactPicture msdt:dt="string"></mso:PublishingContactPicture>
+<mso:PublishingRollupImage msdt:dt="string"></mso:PublishingRollupImage>
+<mso:Audience msdt:dt="string"></mso:Audience>
+<mso:PublishingContactName msdt:dt="string"></mso:PublishingContactName>
+<mso:Comments msdt:dt="string"></mso:Comments>
+<mso:PublishingContactEmail msdt:dt="string"></mso:PublishingContactEmail>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
 </head>
 <body>
 <style>
@@ -310,7 +322,7 @@ ul.block > li {
 <!-- Reveal Modals begin -->
 <div id="fullDetails" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
   <h2 id="fullDetailsTitle">Map Description and Exceptions</h2>
-  <p>The data used in the production of this map has been sourced from ENTSO-E member companies, the <a href="http://www.ost.al/index.php/en/">Albanian Transmission System Operator</a>, <a href="http://www.sonelgaz.dz/">Sonelgaz</a>, <a href="#">System Operator of the UPS of Russia</a> and <a href="#">KRENERGO National Power Company</a>.</p>
+  <p>The data used in the production of this map has been sourced from ENTSO-E member companies, the <a href="http://www.ost.al/index.php/en/">Albanian Transmission System Operator</a>, <a href="http://www.sonelgaz.dz/">Sonelgaz</a>, <a href="#">System Operator of the UPS of Russia</a> and <a href="#">UKRENERGO National Power Company</a>.</p>
   <p>The map is a comprehensive illustration of the interconnected networks, it shows existing elements and those under construction.</p>
   <h3>Lines</h3>
   <p>High-voltage cables/lines with towers designed for voltages of: 
@@ -693,50 +705,62 @@ if (!mapboxgl.supported()) {
 
     var map = new mapboxgl.Map({
         container: 'map',
-        style: './ee_map_v7.js',
+        // style: './ee_map_v7.js',
+        style: 'mapbox://styles/entsoe/cj3uaxiir00002ro7l4f3xl3n',
         center: [2.99,47.71],
         zoom: 4,
         hash: true,
         maxBounds: bounds // Sets bounds as max
     });
 
-    map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+
+    map.addControl(new mapboxgl.NavigationControl({position: 'bottom-right'}));
 
     // make additions to the credits
-    var credit = document.createElement('a');
-    credit.href = 'http://www.entsoe.eu';
-    credit.className = 'inline fr color-white ee-atrib';
-    credit.target = '_target';
-    credit.textContent = '© ENTSO-E - Data 01/01/2016';
-    map.getContainer().querySelector('.mapboxgl-ctrl-bottom-right').appendChild(credit);
+    // var credit = document.createElement('a');
+    // credit.href = 'http://www.entsoe.eu';
+    // credit.className = 'inline fr color-white ee-atrib';
+    // credit.target = '_target';
+    // credit.textContent = '© ENTSO-E - Data 27/07/2017';
+    // map.getContainer().querySelector('.mapboxgl-ctrl-bottom-right').appendChild(credit);
 
     map.on('click', function(e) {
         var features = map.queryRenderedFeatures(e.point)
 
-        clickedFeatures = []
-        for (var i = features.length - 1; i >= 0; i--) {
-                feature = features[i]
+        // clickedFeatures = []
+        // for (var i = features.length - 1; i >= 0; i--) {
+        //         feature = features[i]
                
-                if (feature['layer']['source'] == "mapbox://entsoe.dzotpozu" || feature['layer']['source'] == "mapbox://rusty.02rit83j" || feature['layer']['source'] == "mapbox://rusty.cm0b8gzp" || feature['layer']['source'] == "mapbox://rusty.99126792"){
-                    clickedFeatures.push(feature.properties)
-                }
-              };
+        //         if (feature['layer']['source'] == "composite" || feature['layer']['source'] == "mapbox://entsoe.1nr7sorj" ){
+        //             clickedFeatures.push(feature.properties)
+        //         }
+        //       };
+        clickedFeatures = features.filter(function(f) {
+            return f.layer.source == 'mapbox://entsoe.5m43hs6u' || f.layer['source-layer'] == "lines";
+        })
+        .filter(function(f) {
+            return f.layer.id.indexOf('labels-') == -1
+        })
+        .map(function(f) {
+            return f.properties
+        })
 
+        // console.log(features)
         popUp = ''
               
               for (var i = clickedFeatures.length - 1; i >= 0; i--) {
                 feature = clickedFeatures[i]
 
-                mw = feature['mw']
+                mw = feature['MW']
                 if (mw > 0) {
-                  popUp += '<div><strong>'+feature['symbol']+' ('+ mw.toLocaleString() +' MW)</strong></div>'
+                  popUp += '<div><strong>'+feature['Symbol']+' ('+ mw.toLocaleString() +' MW)</strong></div>'
                 } else {
-                  popUp += '<div><strong>'+feature['symbol']+'</strong></div>'
+                  popUp += '<div><strong>'+feature['Symbol']+'</strong></div>'
                 };
                 
                 
-                if (feature['name_eng']) {
-                  popUp += '<div>'+feature['name_eng']+'</div>'
+                if (feature['Name_Eng']) {
+                  popUp += '<div>'+feature['Name_Eng']+'</div>'
                 };
                 if (feature['country_1']) {
                   popUp += '<div>'+feature['country_1']+' &mdash; ' +feature['country_2']+'</div>'
