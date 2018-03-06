@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<html>
 <head>
     <meta charset='utf-8' />
     <title>ENTSO-E Online Grid Map 2017</title>
@@ -14,6 +14,9 @@
         html, body { margin:0; padding:0; height:100%;}
         .row {max-width: inherit;}
         #map { position:relative; top:0; bottom:0; width:100%;height:100%;}
+        #map canvas {
+            cursor: crosshair;
+        }
         #map_area {width: 100%; height:100%;margin: 0;padding: 0;}
         .mapboxgl-popup-close-button, .mapboxgl-popup-close-button:hover,.mapboxgl-ctrl-group > button {color:rgb(0, 0, 0);}
          .mapboxgl-popup-close-button {padding:3px 6px;}
@@ -222,6 +225,10 @@ input[type=range], input[type=range]::-webkit-slider-thumb {
 .sidebar-container .keyline-top {
     border-color: rgba(0,0,0,0.4);
 }
+.mapboxgl-ctrl-top-right {
+top:80px;
+}
+
 .z10 {
     z-index: 10;
 }
@@ -269,6 +276,12 @@ small, .prose.small, .small {
 .beta-container {
     width: 300px;
 }
+
+.beta-container p {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
 .phase-tag {
     display: -moz-inline-stack;
     display: inline-block;
@@ -301,18 +314,6 @@ ul.block > li {
 .ee-atrib {font-weight: bold;color: rgba(0,0,0,0.75);background: rgba(255,255,255,0.5);padding-left: 5px;}
     </style>
 
-
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:PublishingIsFurlPage msdt:dt="string">0</mso:PublishingIsFurlPage>
-<mso:PublishingContactPicture msdt:dt="string"></mso:PublishingContactPicture>
-<mso:PublishingRollupImage msdt:dt="string"></mso:PublishingRollupImage>
-<mso:Audience msdt:dt="string"></mso:Audience>
-<mso:PublishingContactName msdt:dt="string"></mso:PublishingContactName>
-<mso:Comments msdt:dt="string"></mso:Comments>
-<mso:PublishingContactEmail msdt:dt="string"></mso:PublishingContactEmail>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
 </head>
 <body>
 <style>
@@ -322,7 +323,7 @@ ul.block > li {
 <!-- Reveal Modals begin -->
 <div id="fullDetails" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
   <h2 id="fullDetailsTitle">Map Description and Exceptions</h2>
-  <p>The data used in the production of this map has been sourced from ENTSO-E member companies, the <a href="http://www.ost.al/index.php/en/">Albanian Transmission System Operator</a>, <a href="http://www.sonelgaz.dz/">Sonelgaz</a>, <a href="#">System Operator of the UPS of Russia</a> and <a href="#">UKRENERGO National Power Company</a>.</p>
+  <p>The data used in the production of this map has been sourced from ENTSO-E member companies, <a href="http://www.med-tso.com/">MedTSO members</a>, <a href="http://so-ups.ru/">System Operator of the UPS of Russia</a> and <a href="https://ua.energy/en/">UKRENERGO National Power Company</a>.</p>
   <p>The map is a comprehensive illustration of the interconnected networks, it shows existing elements and those under construction.</p>
   <h3>Lines</h3>
   <p>High-voltage cables/lines with towers designed for voltages of: 
@@ -344,11 +345,11 @@ ul.block > li {
 <table class="tg">
   <tr>
     <th class="tg-9hbo">Country</th>
-    <th class="tg-9hbo">Non-Renewable</th>
-    <th class="tg-9hbo">Renewable</th>
+    <th class="tg-9hbo">Non-Renewable <br>(&ge; MW)</th>
+    <th class="tg-9hbo">Renewable <br>(&ge; MW)</th>
     <th class="tg-9hbo">Country</th>
-    <th class="tg-9hbo">Non-Renewable</th>
-    <th class="tg-9hbo">Renewable</th>
+    <th class="tg-9hbo">Non-Renewable <br>(&ge; MW)</th>
+    <th class="tg-9hbo">Renewable <br>(&ge; MW)</th>
   </tr>
   <tr>
     <td class="tg-9hbo">Albania</td>
@@ -579,6 +580,7 @@ ul.block > li {
             In general the map shows all transmission lines designed for 220kV voltage and higher and generation stations with net generation capacity of more than 100MW.
         </p>
         <a href="#details" data-reveal-id="fullDetails" class="button small" style="margin-bottom: 10px;">Full Details</a>
+        <button id="crossBorderFilter" class="button small" style="margin-bottom: 10px;">Show Cross Border Only</button>
         <a id="help" href="#help" class="button small success" style="margin-bottom: 10px;">Click any feature for extra info</a>
 
 
@@ -713,6 +715,32 @@ if (!mapboxgl.supported()) {
         maxBounds: bounds // Sets bounds as max
     });
 
+    map.on('load', function() {
+    var baselayers = ["dc-lines",
+        "ac-lines-voltage",
+        "underground",
+        "ac-lines-voltag-circuits ",
+        "ac-lines-voltage-uc",
+        "dc-lines-uc",
+        "points",
+        "labels-stations"]
+
+    baselayers.forEach(function (l) {
+        map.on('mouseenter', l, function(e) {
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', l, function() {
+            map.getCanvas().style.cursor = '';
+        });
+
+    });
+    });
+    
+
+    
+
+
 
     map.addControl(new mapboxgl.NavigationControl({position: 'bottom-right'}));
 
@@ -723,6 +751,109 @@ if (!mapboxgl.supported()) {
     // credit.target = '_target';
     // credit.textContent = '© ENTSO-E - Data 27/07/2017';
     // map.getContainer().querySelector('.mapboxgl-ctrl-bottom-right').appendChild(credit);
+    var crossBorderFilter = document.getElementById('crossBorderFilter');
+
+    var showCross = false;
+    crossBorderFilter.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.target.classList.toggle('active');
+      if (showCross == false) {
+        showCrossBorder(true)
+        showCross = true;
+      } else {
+        showCrossBorder(false)
+        showCross = false;
+      }
+      
+    }, false);
+
+    function showCrossBorder(show) {
+        if (show) {
+        // map.setLayoutProperty('points', 'visibility', 'none')
+        // map.setLayoutProperty('labels-generators', 'visibility', 'none')
+        // map.setLayoutProperty('labels-stations', 'visibility', 'none')
+
+         map.setFilter('points', 
+            ["all", 
+                ["==", "$type", "Point"],
+                ['==', 'Tie_line_s', 1]
+            ]);
+        map.setFilter('labels-generators', 
+            ["all", 
+                ["==", "$type", "Point"],
+                ['==', 'Tie_line_s', 1]
+            ]);
+        map.setFilter('labels-stations', 
+            ["all", 
+                ["==", "$type", "Point"],
+                ['==', 'Tie_line_s', 1]
+            ]);
+        map.setFilter('ac-lines-voltage', 
+            ["all", 
+                ["==", "Current_", "AC"], 
+                ["==", "UnderConst", "0"], 
+                ['==', 'Tie_line', 1]
+            ]);
+        map.setFilter('dc-lines', 
+            ["all", 
+                ["==", "Current_", "DC"], 
+                ["==", "UnderConst", "0"], 
+                ['==', 'Tie_line', 1]
+            ]);
+        map.setFilter('ac-lines-voltag-circuits ', 
+            ["all", 
+                ["!=", "UnderConst", 0], 
+                ["==", "Current_", "AC"], 
+                [">", "NumberOfCi", 1], 
+                ['==', 'Tie_line', 1]
+            ])
+        map.setFilter('ac-lines-voltage-uc', 
+            ["all", 
+                ["!=", "UnderConst", "0"], 
+                ["==", "Current_", "AC"], 
+                ['==', 'Tie_line', 1]
+            ])
+
+        } else {
+              map.setFilter('ac-lines-voltage', 
+            ["all", 
+                ["==", "Current_", "AC"], 
+                ["==", "UnderConst", "0"]
+            ]);
+        map.setFilter('dc-lines', 
+            ["all", 
+                ["==", "Current_", "DC"], 
+                ["==", "UnderConst", "0"]
+            ]);
+        map.setFilter('ac-lines-voltag-circuits ', 
+            ["all", 
+                ["!=", "UnderConst", 0], 
+                ["==", "Current_", "AC"], 
+                [">", "NumberOfCi", 1]
+            ])
+        map.setFilter('ac-lines-voltage-uc', 
+            ["all", 
+                ["!=", "UnderConst", "0"], 
+                ["==", "Current_", "AC"]
+            ])
+        
+        map.setFilter('points', 
+            ["all", 
+                ["==", "$type", "Point"]
+            ]);
+        map.setFilter('labels-generators', 
+            ["all", 
+                ["==", "$type", "Point"]
+            ]);
+        map.setFilter('labels-stations', 
+            ["all", 
+                ["==", "$type", "Point"]
+            ]);
+
+        }
+        
+        
+    }
 
     map.on('click', function(e) {
         var features = map.queryRenderedFeatures(e.point)
