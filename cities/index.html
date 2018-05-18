@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>ENTSO-E Online Grid Map 2017</title>
+    <link rel="shortcut icon" href="http://www.entsoe.eu/Style Library/EntsoePublishingBranding/Images/favicon.ico" type="image/vnd.microsoft.icon" id="favicon" />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css' rel='stylesheet' />
+
+    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        html, body { margin:0; padding:0; height:100%;}
+        .row {max-width: inherit;}
+        #map { position:relative; top:0; bottom:0; width:100%;height:100%;}
+        #map canvas {
+            cursor: crosshair;
+        }
+        #map_area {width: 100%; height:100%;margin: 0;padding: 0;}
+        .mapboxgl-popup-close-button, .mapboxgl-popup-close-button:hover,.mapboxgl-ctrl-group > button {color:rgb(0, 0, 0);}
+         .mapboxgl-popup-close-button {padding:3px 6px;}
+        .mapboxgl-ctrl-group > button {margin:0;}
+        .mapboxgl-popup-content {padding:15px 25px 15px;}
+        .title {padding-top:1em;padding-bottom: .5em; margin-bottom:.5em; border-bottom: 1px solid #3c3c3c; }
+        #features {}
+         ul li .properties {margin-left:30px;min-height: 100px;}
+         ul li .station {font-size: 12px;
+          padding: 10px 0;
+          margin-right: 30px;
+          white-space: nowrap;
+          overflow: hidden;
+          height: 37px;}
+         ul li {display: block;
+                position: relative;
+                border-bottom: 1px solid #EDECE9;
+                cursor: pointer;
+            }
+        ul li .voltage::after {content:' kV';}
+        ul li .line-props {width: 25%;float: left;font-size: 14px;font-weight: 400;color: #737c81;}
+        ul li .investment {display: block;padding-bottom: 10px;}
+        ul li .invest {display: inline-block;font-size: 14px;font-weight: 400;color: #737c81;padding-right: 10px;}
+
+        .promotor:before{content:' promotor';}
+        .invest_type:before{content:' invest type';}
+        .commissioning:before{content:'commissioning';}
+        .promotor:before,  .invest_type:before, .commissioning:before {
+          display: block;
+          font-size: 9px;
+          color: #222222;
+        }
+
+
+        ul li .line-props:last-child{width:50%;}
+        
+        .routeLine._154{background-color: #47B584;}
+        .routeLine._220,.routeLine._275 {background-color: #47B584;}
+        .routeLine._400,.routeLine._330,.routeLine._380 {background-color: #F70C0C;}
+        .routeLine.DC {background-color: #AC007E;}
+
+        ul li .routeLine {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: absolute;
+            width: 2px;
+            height: 90%;
+            background-color: #D8D8D8;
+            left: 10px;
+            top: 78px;
+            height: 62px;
+            transition: height 0.25s,top 0.25s;
+            transition-delay: 0.05s;
+            transition-timing-function: ease-in-out;
+        }
+        ul li .routeLine div:first-child {
+    margin-top: -3px;
+}
+ul li .routeLine div:last-child {
+    position: absolute;
+    bottom: -3px;
+}
+ul li .routeLine > div {
+    width: 10px;
+    height: 10px;
+    background-color: #D8D8D8;
+    border-radius: 8px;
+    margin-left: -4px;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+    color: transparent;
+    transition: width 0.25s,height 0.25s,margin-left 0.25s,color 0.25s,line-height 0.25s;
+    transition-delay: 0.05s;
+    transition-timing-function: ease-in-out;
+}
+.key-stats >li {border-right: 5px solid #CCC;padding:10px;color:#fff; background: #acc23a;}
+.dot{border-radius:50%;margin-right:5px;display:inline-block !important;}
+.line{margin-right:5px;display:inline-block !important;padding: 3px 10px;border-radius: 0;margin-bottom: 3px;}
+.fill-keynote{background-color:#f04124;}
+.fill-new-station {background-color:#7D9A46;}
+.fill-up-station {background-color:rgba(1,1,1,1);}
+.fill-750kv{background-color:rgba(32,72,128,1);}
+.fill-500kv{background-color:rgba(168,0,0,1);}
+.fill-400kv{background-color:rgba(237,17,17,1);}
+.fill-300kv{background-color:rgba(224,140,22,1);}
+.fill-220kv{background-color:rgba(10,105,10,1);}
+.fill-110kv{background-color:rgba(0,0,0,1);}
+.fill-dc{background-color:#ac007e;}
+.fill-exist{background-color:#d6d6d6;}
+.fill-bubble{background-color:#e1dcd3;border:1px solid #000;padding: 5px 10px;margin-bottom: 0px;}
+#legend > ul li {border-bottom: 0px;padding-right:10px;}
+#legend {border-bottom:2px solid #D8D7D3;margin-top:0px;border-top:1px solid #D8D7D3;padding-top:10px;color:#444;}
+body {background: #FAF9F7;}
+
+.mapboxgl-popup-content {
+    max-width: 300px;
+}
+.bg_icon {    padding: 5px 8px 5px 9px;
+    margin-bottom: 0px;
+    background-image: url(https://api.mapbox.com/styles/v1/rusty/cijftgxlo0035aim4b01kmevc/sprite.png?access_token=pk.eyJ1IjoicnVzdHkiLCJhIjoib0FjUkJybyJ9.V9QoXck_1Z18MhpwyIE2Og);
+    height: 14px;
+    width: 20px;
+    background-repeat: no-repeat;
+    display: inline-block !important;
+    background-size: cover;margin-right: 4px;} 
+.line-multi{background-image: url(./img/stations/line-const.svg);}
+.line-cons{background-image: url(./img/stations/line-const1.svg);}
+
+.sub{background-image: url(./img/stations/Substation_UO.svg);}
+.ps{background-image: url(./img/stations/Hydro_Pump_storage_UO.svg);}
+.rs{background-image: url(./img/stations/Hydro_Run-of_river_UO.svg);}
+.bs {background-image: url(./img/stations/Biomass_UO.svg);}
+.con{background-image: url(./img/stations/Converter_station_UO.svg);}
+.gas{background-image: url(./img/stations/Fossil_fuel_Gas_UO.svg);}
+.wind{background-image: url(./img/stations/Wind_UO.svg);}
+.nc{background-image: url(./img/stations/Nuclear_UO.svg);}
+.solar{background-image: url(./img/stations/Solar_UO.svg);}
+.coal{background-image: url(./img/stations/Fossil_fuel_Hard_coal_UO.svg);}
+.other{background-image: url(./img/stations/other_UO.svg);}
+.cons_hor{background-image: url(./img/stations/cons_hor.svg);}
+.cons_dia{background-image: url(./img/stations/cons_dia.svg);}
+
+.hydro_pure_ps{background-image: url(./img/new/hydro_pure_ps.svg);}
+.hydro_pure_storage{background-image: url(./img/new/hydro_pure_storage.svg);}
+.hydro_ror{background-image: url(./img/new/hydro_ror.svg);}
+.hydro_mixed{background-image: url(./img/new/hydro_mixed.svg);}
+.hydro_marine{background-image: url(./img/new/hydro_marine.svg);}
+.fossil_brown_lignite{background-image: url(./img/new/fossil_brown_lignite.svg);}
+.fossil_coal_gas{background-image: url(./img/new/fossil_coal_gas.svg);}
+.fossil_gas{background-image: url(./img/new/fossil_gas.svg);}
+.fossil_coal_hard{background-image: url(./img/new/fossil_coal_hard.svg);}
+.fossil_oil{background-image: url(./img/new/fossil_oil.svg);}
+.fossil_oil_shale{background-image: url(./img/new/fossil_oil_shale.svg);}
+.fossil_peat{background-image: url(./img/new/fossil_peat.svg);}
+.fossil_mixed{background-image: url(./img/new/fossil_mixed.svg);}
+.fossil_other{background-image: url(./img/new/fossil_other.svg);}
+.nuclear{background-image: url(./img/new/nuclear.svg);}
+.waste_nr{background-image: url(./img/new/waste_nr.svg);}
+.waste_renewable{background-image: url(./img/new/waste_renewable.svg);}
+.waste_mixed{background-image: url(./img/new/waste_mixed.svg);}
+.solar_pv{background-image: url(./img/new/solar_pv.svg);}
+.solar_thermal{background-image: url(./img/new/solar_thermal.svg);}
+.biomass{background-image: url(./img/new/biomass.svg);}
+.biogas{background-image: url(./img/new/biogas.svg);}
+.wind{background-image: url(./img/new/wind.svg);}
+.other_nrenew{background-image: url(./img/new/other_nrenew.svg);}
+.other_renew{background-image: url(./img/new/other_renew.svg);}
+.other_nl{background-image: url(./img/new/other_nl.svg);}
+.substation{background-image: url(./img/new/substation.svg);}
+.converter{background-image: url(./img/new/converter.svg);}
+.converter_b2b{background-image: url(./img/new/converter_b2b.svg);}
+.power_plus_sub{background-image: url(./img/new/power_plus_sub.svg);}
+
+.tlbr_cons{background-image: url(./img/new/TL-BR_cons.svg);}
+.ver_cons{background-image: url(./img/new/VER_cons.svg);}
+.hor_cons{background-image: url(./img/new/HOR_cons.svg);}
+.bltr_cons{background-image: url(./img/new/BL-TR_cons.svg);}
+
+
+    .legend1 {
+      position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: #ffffff;
+    padding: 5px;
+    z-index: 10000000;
+    width: 275px;
+    font-weight: normal;
+    text-align: left;
+    }
+    #menu {
+        position: absolute;
+        background: #fff;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;
+        top:120px;
+        left: 0;
+        margin-top: 10px;
+        margin-left: 25px;
+    }
+    input#v2, input#v3 {margin-top: 5px;
+        margin-bottom: 0;}
+
+
+
+
+input[type=range] {
+    display: inline-block!important;
+    vertical-align: middle;
+    height: 12px;
+    padding: 0 2px;
+    border: 2px solid transparent;
+    background: rgba(0,0,0,0.25);
+    min-width: 100px;
+    overflow: hidden;
+    cursor: pointer;
+}
+input[type=range], input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.sidebar-container .keyline-top {
+    border-color: rgba(0,0,0,0.4);
+}
+.mapboxgl-ctrl-top-right {
+top:80px;
+}
+
+.z10 {
+    z-index: 10;
+}
+.keyline-top {
+    border-top: 1px solid rgba(0,0,0,0.10);
+}
+.pad2 {
+    padding: 20px;
+}
+small, .prose.small, .small {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+.dark {
+    color: #fff;
+}
+.dark h3 {color: #ffffff;}
+.block {
+    display: block;
+}
+.strong, strong {
+    font-family: 'Open Sans Bold', sans-serif;
+    font-weight: normal;
+}
+.dark .quiet {
+    color: #7f7f7f;
+    color: rgba(255,255,255,.9);
+}
+.quiet {
+    color: #7f7f7f;
+    color: rgba(0,0,0,.9);
+}
+.fill-darkgrey {
+    background-color: #505050;
+}
+
+.pin-topright {
+    top: 0;
+    right: 0;
+}
+.pin-top, .pin-right, .pin-bottom, .pin-left, .pin-topleft, .pin-topright, .pin-bottomleft, .pin-bottomright {
+    position: absolute;
+}
+.beta-container {
+    width: 300px;
+}
+
+.beta-container p {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.phase-tag {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 8px 0 0;
+    padding: 2px 5px 0;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.1428571429;
+    font-weight: 700;
+    text-transform: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #d53880;
+}
+
+.reveal-modal {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+
+.dark h2 {color: #fff;}
+ul.block > li {
+    float: none;
+}
+.button.small {padding: 0.875rem 1.2rem 0.9375rem 1.2rem;}
+.ee-atrib {font-weight: bold;color: rgba(0,0,0,0.75);background: rgba(255,255,255,0.5);padding-left: 5px;}
+    </style>
+
+</head>
+<body>
+<style>
+    
+</style>
+
+<!-- Reveal Modals begin -->
+<div id="Error" class="reveal-modal medium" data-reveal aria-labelledby="secondModalTitle" aria-hidden="true" role="dialog">
+  <h2 id="fullDetailsTitle">Uh Oh - something went wrong!</h2>
+
+  <p>We're using some a new technology to bring our new maps, called WebGL. So sometimes things don't always workd as planned. Unfortunately this does not work with older web browsers like Internet Explorer 7/8/9/10.</p>
+
+  <p class="panel">It would seem that your browser does not support WebGL.</p>
+
+<p>If you're using Internet Explorer 11, this may be caused by using IE compatibility mode when using <a href="https://www.entsoe.eu">www.entsoe.eu</a></p>
+<h2><strong>None of this make any sense to you?</strong></h2>
+<p><a href="https://rustyb.github.io/ee_transmap/" class="button success radius" target="_blank">Try the alternative map</a>
+    or send an email to <a href="mailto:colin.broderick@entsoe.eu" class="button radius">colin.broderick@entsoe.eu</a>
+</p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+  <div class="row" style="height:100%;">
+    <!--<div class="large-3 columns">
+    <div class="logo">
+        <h2 style="padding-top: 1em;padding-bottom: .5em;margin-bottom: .5em;border-bottom: 0px;padding-bottom: 0;border-bottom:0px;">
+        <a href="#" style="color:#63b6e5;">ENTSO-E Transmission System</a>
+        </h2>
+    </div>
+    
+
+      
+      <div class="copyright">
+        <p>&copy; ENTSO-E. Map data is accurate as of February 2015.</p>
+      </div>
+  </div>-->
+    
+    
+    <div class="" style="height:100%;">
+      <div id="map_area">
+        <div id='map'></div>
+      </div>
+    </div>
+    
+  </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/jquery.js"></script>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZW50c29lIiwiYSI6ImNqNzV1dGc0ejEwZ2Qyd3MzamY3MzBncDIifQ.-fPv2n5MOiSxF64bHCMLgg';
+if (!mapboxgl.supported()) {
+    $( document ).ready(function() {
+        $('#Error').foundation('reveal', 'open');
+    });
+    //alert('Your browser does not support Mapbox GL');
+} else {
+    var bounds = [
+        [ -53.78906249999999,21.12549763660628,], // Southwest coordinates
+        [75.9375,71.13098770917023]  // Northeast coordinates
+    ];
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        // style: './ee_map_v7.js',
+        style: 'mapbox://styles/entsoe/cjhby517s06ml2ss0fkrlqkmy',
+        center: [2.99,47.71],
+        zoom: 4,
+        hash: true,
+        maxBounds: bounds // Sets bounds as max
+    });
+
+    map.on('load', function() {
+    var baselayers = ["dc-lines",
+        "ac-lines-voltage",
+        "underground",
+        "ac-lines-voltag-circuits ",
+        "ac-lines-voltage-uc",
+        "dc-lines-uc",
+        "points",
+        "labels-stations"]
+
+    baselayers.forEach(function (l) {
+        map.on('mouseenter', l, function(e) {
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', l, function() {
+            map.getCanvas().style.cursor = '';
+        });
+
+    });
+    });
+    
+
+    
+
+
+
+    map.addControl(new mapboxgl.NavigationControl({position: 'bottom-right'}));
+
+    // make additions to the credits
+    // var credit = document.createElement('a');
+    // credit.href = 'http://www.entsoe.eu';
+    // credit.className = 'inline fr color-white ee-atrib';
+    // credit.target = '_target';
+    // credit.textContent = '© ENTSO-E - Data 27/07/2017';
+    // map.getContainer().querySelector('.mapboxgl-ctrl-bottom-right').appendChild(credit);
+    var crossBorderFilter = document.getElementById('crossBorderFilter');
+
+    var showCross = false;
+    crossBorderFilter.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.target.classList.toggle('active');
+      if (showCross == false) {
+        showCrossBorder(true)
+        showCross = true;
+      } else {
+        showCrossBorder(false)
+        showCross = false;
+      }
+      
+    }, false);
+
+    map.on('click', function(e) {
+        var features = map.queryRenderedFeatures(e.point)
+
+        // clickedFeatures = []
+        // for (var i = features.length - 1; i >= 0; i--) {
+        //         feature = features[i]
+               
+        //         if (feature['layer']['source'] == "composite" || feature['layer']['source'] == "mapbox://entsoe.1nr7sorj" ){
+        //             clickedFeatures.push(feature.properties)
+        //         }
+        //       };
+        clickedFeatures = features.filter(function(f) {
+            return f.layer.source == 'mapbox://entsoe.5m43hs6u' || f.layer['source-layer'] == "lines";
+        })
+        .filter(function(f) {
+            return f.layer.id.indexOf('labels-') == -1
+        })
+        .map(function(f) {
+            return f.properties
+        })
+
+        // console.log(features)
+        popUp = ''
+              
+              for (var i = clickedFeatures.length - 1; i >= 0; i--) {
+                feature = clickedFeatures[i]
+
+                mw = feature['MW']
+                if (mw > 0) {
+                  popUp += '<div><strong>'+feature['Symbol']+' ('+ mw.toLocaleString() +' MW)</strong></div>'
+                } else {
+                  popUp += '<div><strong>'+feature['Symbol']+'</strong></div>'
+                };
+                
+                
+                if (feature['Name_Eng']) {
+                  popUp += '<div>'+feature['Name_Eng']+'</div>'
+                };
+                if (feature['country_1']) {
+                  popUp += '<div>'+feature['country_1']+' &mdash; ' +feature['country_2']+'</div>'
+                };
+
+                popUp += '<hr />'
+
+            };
+
+            if (clickedFeatures.length > 0) {
+              var tooltip = new mapboxgl.Popup({anchor: 'top-left'})
+                .setLngLat(e.lngLat)
+                .setHTML(popUp)
+                .addTo(map);
+            } else {
+              //info.innerHTML = '<p><strong>Select a line, station or bubble for more information.</strong></p>';
+            }
+          
+      });
+
+}
+
+
+</script>
+
+</body>
+</html>
