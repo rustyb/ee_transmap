@@ -814,6 +814,11 @@ if (!mapboxgl.supported()) {
                 ["==", "Current_", "AC"], 
                 ['==', 'Tie_line', 1]
             ])
+        map.setFilter('underground', 
+            ["all", 
+                ['==', 'Tie_line', 1]
+            ])
+
 
         } else {
               map.setFilter('ac-lines-voltage', 
@@ -836,6 +841,10 @@ if (!mapboxgl.supported()) {
             ["all", 
                 ["!=", "UnderConst", "0"], 
                 ["==", "Current_", "AC"]
+            ])
+        map.setFilter('underground', 
+            ["all", 
+                ['==', 'Undergroun', 1]
             ])
         
         map.setFilter('points', 
