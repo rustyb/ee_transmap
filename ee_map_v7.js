@@ -3446,6 +3446,7 @@
         "300-330 kV Transmission Line Under Construction, 1 Circuit",
         "300-330 kV Transmission Line Under Construction, 2 Circuits",
         "380-400 kV Transmission Line Under Construction, 1 Circuit",
+        "380-400 kV Transmission Line Under Construction, 2 Circuits",
         "380-400 kV Transmission Line Under Construction, >= 3 Circuits",
         "500 kV Transmission Line Under Construction, 1 Circuit",
         "500 kV Transmission Line Under Construction, 2 Circuits",
