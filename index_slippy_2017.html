@@ -10,8 +10,8 @@
 
     <script src='https://cdn.ravenjs.com/1.3.0/jquery,native/raven.min.js'></script>
 
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
@@ -82,7 +82,7 @@
         </a>
         <div class='space-right8 pad2y space-left3'>
             <h3>ENTSO-E Transmission System Map</h3>
-            <div class='clearfix small'>Non interactive static ENTSO-E transmission map. For full details + legend please visit <a href="https://www.entsoe.eu/data/map/">entsoe.eu/data/map</a></div>
+            <div class='clearfix small'>Non interactive static ENTSO-E transmission map. For full details + legend please visit <a href="https://www.entsoe.eu/map/Pages/default.aspx">entsoe.eu/map</a></div>
         </div>
     </div>
     <script>
@@ -104,7 +104,7 @@
                 minZoom: 1
             });
 
-            L.mapbox.styleLayer('mapbox://styles/entsoe/cjuy8mtut0fi51fp56voqsq3g').addTo(map);
+            L.mapbox.styleLayer('mapbox://styles/entsoe/cimn76g7t0040d2np7woiqswj').addTo(map);
 
             if (window.location.hash) {
                 window.location.hash = window.location.hash

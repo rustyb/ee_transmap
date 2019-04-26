@@ -8,8 +8,8 @@
 
     <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         html, body { margin:0; padding:0; height:100%;}
         .row {max-width: inherit;}
@@ -580,7 +580,6 @@ ul.block > li {
         <p>
             In general the map shows all transmission lines designed for 220kV voltage and higher and generation stations with net generation capacity of more than 100MW.
         </p>
-        <p><strong>Data correct up to 01/01/2019</strong></p>
         <a href="#details" data-reveal-id="fullDetails" class="button small" style="margin-bottom: 10px;">Full Details</a>
         <button id="crossBorderFilter" class="button small" style="margin-bottom: 10px;">Show Cross Border Only</button>
         <a id="help" href="#help" class="button small success" style="margin-bottom: 10px; display: block;">Click any feature for extra info</a>
@@ -710,7 +709,7 @@ if (!mapboxgl.supported()) {
     var map = new mapboxgl.Map({
         container: 'map',
         // style: './ee_map_v7.js',
-        style: 'mapbox://styles/entsoe/cjuy8mtut0fi51fp56voqsq3g',
+        style: 'mapbox://styles/entsoe/cj3uaxiir00002ro7l4f3xl3n',
         center: [2.99,47.71],
         zoom: 4,
         hash: true,
@@ -718,14 +717,14 @@ if (!mapboxgl.supported()) {
     });
 
     map.on('load', function() {
-    var baselayers = ["2019-dc-lines",
-        "2019-ac-lines-voltage",
-        "2019-underground",
-        "2019-ac-lines-voltag-circuits",
-        "2019-ac-lines-voltage-uc",
-        "2019-dc-lines-uc",
-        "2019-points",
-        "2019-labels-stations"]
+    var baselayers = ["dc-lines",
+        "ac-lines-voltage",
+        "underground",
+        "ac-lines-voltag-circuits ",
+        "ac-lines-voltage-uc",
+        "dc-lines-uc",
+        "points",
+        "labels-stations"]
 
     baselayers.forEach(function (l) {
         map.on('mouseenter', l, function(e) {
@@ -775,88 +774,88 @@ if (!mapboxgl.supported()) {
         // map.setLayoutProperty('labels-generators', 'visibility', 'none')
         // map.setLayoutProperty('labels-stations', 'visibility', 'none')
 
-         map.setFilter('2019-points', 
+         map.setFilter('points', 
             ["all", 
                 ["==", "$type", "Point"],
                 ['==', 'Tie_line_s', 1]
             ]);
-        map.setFilter('2019-labels-generators', 
+        map.setFilter('labels-generators', 
             ["all", 
                 ["==", "$type", "Point"],
                 ['==', 'Tie_line_s', 1]
             ]);
-        map.setFilter('2019-labels-stations', 
+        map.setFilter('labels-stations', 
             ["all", 
                 ["==", "$type", "Point"],
                 ['==', 'Tie_line_s', 1]
             ]);
-        map.setFilter('2019-ac-lines-voltage', 
+        map.setFilter('ac-lines-voltage', 
             ["all", 
                 ["==", "Current_", "AC"], 
                 ["==", "UnderConst", "0"], 
                 ['==', 'Tie_line', 1]
             ]);
-        map.setFilter('2019-dc-lines', 
+        map.setFilter('dc-lines', 
             ["all", 
                 ["==", "Current_", "DC"], 
                 ["==", "UnderConst", "0"], 
                 ['==', 'Tie_line', 1]
             ]);
-        map.setFilter('2019-ac-lines-voltag-circuits', 
+        map.setFilter('ac-lines-voltag-circuits ', 
             ["all", 
                 ["!=", "UnderConst", 0], 
                 ["==", "Current_", "AC"], 
                 [">", "NumberOfCi", 1], 
                 ['==', 'Tie_line', 1]
             ])
-        map.setFilter('2019-ac-lines-voltage-uc', 
+        map.setFilter('ac-lines-voltage-uc', 
             ["all", 
                 ["!=", "UnderConst", "0"], 
                 ["==", "Current_", "AC"], 
                 ['==', 'Tie_line', 1]
             ])
-        map.setFilter('2019-underground', 
+        map.setFilter('underground', 
             ["all", 
                 ['==', 'Tie_line', 1]
             ])
 
 
         } else {
-              map.setFilter('2019-ac-lines-voltage', 
+              map.setFilter('ac-lines-voltage', 
             ["all", 
                 ["==", "Current_", "AC"], 
                 ["==", "UnderConst", "0"]
             ]);
-        map.setFilter('2019-dc-lines', 
+        map.setFilter('dc-lines', 
             ["all", 
                 ["==", "Current_", "DC"], 
                 ["==", "UnderConst", "0"]
             ]);
-        map.setFilter('2019-ac-lines-voltag-circuits', 
+        map.setFilter('ac-lines-voltag-circuits ', 
             ["all", 
                 ["!=", "UnderConst", 0], 
                 ["==", "Current_", "AC"], 
                 [">", "NumberOfCi", 1]
             ])
-        map.setFilter('2019-ac-lines-voltage-uc', 
+        map.setFilter('ac-lines-voltage-uc', 
             ["all", 
                 ["!=", "UnderConst", "0"], 
                 ["==", "Current_", "AC"]
             ])
-        map.setFilter('2019-underground', 
+        map.setFilter('underground', 
             ["all", 
                 ['==', 'Undergroun', 1]
             ])
         
-        map.setFilter('2019-points', 
+        map.setFilter('points', 
             ["all", 
                 ["==", "$type", "Point"]
             ]);
-        map.setFilter('2019-labels-generators', 
+        map.setFilter('labels-generators', 
             ["all", 
                 ["==", "$type", "Point"]
             ]);
-        map.setFilter('2019-labels-stations', 
+        map.setFilter('labels-stations', 
             ["all", 
                 ["==", "$type", "Point"]
             ]);
@@ -878,10 +877,10 @@ if (!mapboxgl.supported()) {
         //         }
         //       };
         clickedFeatures = features.filter(function(f) {
-            return f.layer.source == 'mapbox://entsoe.0ol41nja' || f.layer['source-layer'] == "lines" || f.layer['source-layer'] == "points";
+            return f.layer.source == 'mapbox://entsoe.5m43hs6u' || f.layer['source-layer'] == "lines";
         })
         .filter(function(f) {
-            return f.layer.id.indexOf('2019-labels-') == -1
+            return f.layer.id.indexOf('labels-') == -1
         })
         .map(function(f) {
             return f.properties
